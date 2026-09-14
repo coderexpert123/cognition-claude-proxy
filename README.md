@@ -8,6 +8,21 @@ responses back to Anthropic SSE.
 
 ## How it works
 
+```mermaid
+graph LR
+    CC[Claude Code] -->|POST /v1/messages\nAnthropic JSON| PX[Proxy :8765]
+    PX -->|Connect-RPC protobuf\nauthenticated| UP[Devin CLI backend\nserver.codeium.com]
+    UP -->|streaming events| PX
+    PX -->|Anthropic SSE| CC
+    PX -->|GET /v1/models| UP
+    style PX fill:#4d94ff,stroke:#333,stroke-width:2px
+    style CC fill:#e066ff,stroke:#333
+    style UP fill:#2eb82e,stroke:#333
+```
+
+<details>
+<summary>Plain-text flow</summary>
+
 ```
 claude  (ANTHROPIC_BASE_URL=http://localhost:8765)
   -> POST /v1/messages            (Anthropic Messages API, JSON)
@@ -17,9 +32,34 @@ claude  (ANTHROPIC_BASE_URL=http://localhost:8765)
   <- Anthropic SSE events (message_start/content_block_*/message_delta)
 ```
 
+</details>
+
 The proxy authenticates using your local Devin CLI credentials
 (`%APPDATA%\devin\credentials.toml` on Windows, `~/.config/devin/credentials.toml`
 on Linux/macOS). No API keys to manage — if `devin` works, `dclaude` works.
+
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) 18+
+- [Devin CLI](https://devin.ai/) installed and authenticated (`devin` command works)
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) installed (`claude` command works)
+
+## Quick start
+
+```powershell
+git clone https://github.com/coderexpert123/cognition-claude-proxy.git
+cd cognition-claude-proxy
+
+# Option A: use the wrapper (auto-starts the proxy)
+bin\dclaude.bat -p "hello"
+
+# Option B: start the proxy manually
+node src/server.js            # starts on 127.0.0.1:8765
+# then in another shell:
+set ANTHROPIC_BASE_URL=http://localhost:8765
+set ANTHROPIC_AUTH_TOKEN=test
+claude -p "hello"
+```
 
 ## Setup
 
@@ -92,3 +132,43 @@ Not yet handled: images (replaced with a text placeholder), prompt caching
   when a custom `ANTHROPIC_AUTH_TOKEN` is set. Local/stdio MCPs work fine.
 - `[1m]` is the only context suffix Claude Code recognizes — `[262k]` is not
   parsed and would be sent upstream as part of the model name.
+
+## Troubleshooting
+
+**`permission_denied: "content policy"`** — The upstream content filter
+rejected something in the request. Check the proxy console log for the
+upstream error. If Claude Code updated its system prompt with new phrases,
+extend `sanitizeSystem` in `src/translate.js`.
+
+**`permission_denied: "MCP configuration issue"`** — Misleading; this is
+usually a tool description tripping the content filter, not an actual MCP
+problem. Check which tool description triggered it and extend
+`sanitizeToolDesc` in `src/translate.js`.
+
+**Empty response from Claude Code** — The proxy is running but Claude Code
+shows nothing. Ensure the proxy started successfully (check
+`http://localhost:8765/health` returns `{"ok":true}`). If it did, run with
+`CCP_DEBUG=1` to dump request/response bodies to `%TEMP%\ccp-*.json`.
+
+**`windsurf_api_key not found`** — The proxy couldn't find your Devin CLI
+credentials. Ensure `devin` works first. Or set `CCP_API_KEY` directly.
+
+**Model not found / wrong context window** — Run `node scripts/gen-settings.js`
+to regenerate `claude-settings.json` from the latest `src/models.json` snapshot.
+To refresh the snapshot, capture a live `GetCliModelConfigs` response and
+decode it (see `src/models.js` for the field mapping).
+
+**Proxy port already in use** — Set `CCP_PORT=8766` (or any free port) before
+starting the proxy. If using `dclaude.bat`, set it in the environment before
+running the wrapper.
+
+**Upstream API changed** — If the backend protocol changes, the proxy will
+break. The field mappings are in `src/codeium.js` (request encoding) and
+`src/translate.js` (response decoding). Check the proxy console log for
+decode errors. PRs welcome.
+
+## Verify your setup
+
+```powershell
+node scripts/test.js    # checks /health and /v1/models
+```

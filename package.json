@@ -1,11 +1,12 @@
 {
   "name": "cognition-claude-proxy",
   "version": "0.1.0",
-  "description": "Anthropic Messages API frontend for Cognition's server.codeium.com inference backend — run Claude Code on SWE-2 (or any Devin-available model) using your Devin CLI credentials",
+  "description": "Use Devin CLI's model catalog (SWE-2, GLM-5.2, DeepSeek, 200+) with Claude Code as the backend",
   "type": "module",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "test": "node scripts/test.js"
   },
   "bin": {
     "ccp": "src/server.js"
@@ -13,5 +14,10 @@
   "engines": {
     "node": ">=18"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coderexpert123/cognition-claude-proxy.git"
+  },
+  "keywords": ["claude-code", "devin", "anthropic", "proxy", "llm", "swe-2", "glm", "connect-rpc"]
 }
