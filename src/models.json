@@ -1,0 +1,2788 @@
+[
+  {
+    "id": "claude-opus-5-medium",
+    "name": "Claude Opus 5 Medium",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-5"
+  },
+  {
+    "id": "claude-fable-5-1-medium",
+    "name": "Claude Fable 5.1 Medium",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-fable-5-1"
+  },
+  {
+    "id": "claude-sonnet-5-medium",
+    "name": "Claude Sonnet 5 Medium",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-sonnet-5"
+  },
+  {
+    "id": "gemini-3-8-flash-medium",
+    "name": "Gemini 3.8 Flash Medium",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3-8-flash"
+  },
+  {
+    "id": "gpt-5-6-sol-medium",
+    "name": "GPT-5.6 Sol Medium Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-sol"
+  },
+  {
+    "id": "gpt-5-6-luna-medium",
+    "name": "GPT-5.6 Luna Medium Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-luna"
+  },
+  {
+    "id": "gpt-6-astra-medium",
+    "name": "GPT-6 Astra Medium Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-6-astra"
+  },
+  {
+    "id": "glm-5-2",
+    "name": "GLM-5.2 High",
+    "context": 200000,
+    "maxOutput": 128000,
+    "family": "glm-5.2"
+  },
+  {
+    "id": "kimi-k3-high",
+    "name": "Kimi K3 High",
+    "context": 1048576,
+    "maxOutput": 131072,
+    "family": "kimi-k3"
+  },
+  {
+    "id": "glm-5-3-low",
+    "name": "GLM-5.3 Low",
+    "context": 1048576,
+    "maxOutput": 128000,
+    "family": "glm-5-3"
+  },
+  {
+    "id": "glm-5-3-high",
+    "name": "GLM-5.3 High",
+    "context": 1048576,
+    "maxOutput": 128000,
+    "family": "glm-5-3"
+  },
+  {
+    "id": "glm-5-3-max",
+    "name": "GLM-5.3 Max",
+    "context": 1048576,
+    "maxOutput": 128000,
+    "family": "glm-5-3"
+  },
+  {
+    "id": "swe-1-7-lightning",
+    "name": "SWE-1.7 Lightning Max",
+    "context": 202752,
+    "maxOutput": 96000,
+    "family": "swe-1.7-lightning"
+  },
+  {
+    "id": "swe-2-high",
+    "name": "SWE-2 High",
+    "context": 262000,
+    "maxOutput": 128000,
+    "family": "swe-2"
+  },
+  {
+    "id": "adaptive",
+    "name": "Adaptive",
+    "context": null,
+    "maxOutput": null,
+    "family": null
+  },
+  {
+    "id": "claude-opus-4-7-medium",
+    "name": "Claude Opus 4.7 Medium",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.7"
+  },
+  {
+    "id": "claude-opus-4-7-low",
+    "name": "Claude Opus 4.7 Low",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.7"
+  },
+  {
+    "id": "claude-opus-4-7-high",
+    "name": "Claude Opus 4.7 High",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.7"
+  },
+  {
+    "id": "claude-opus-4-7-xhigh",
+    "name": "Claude Opus 4.7 XHigh",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.7"
+  },
+  {
+    "id": "claude-opus-4-7-max",
+    "name": "Claude Opus 4.7 Max",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.7"
+  },
+  {
+    "id": "claude-opus-4-8-medium",
+    "name": "Claude Opus 4.8 Medium",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.8"
+  },
+  {
+    "id": "claude-opus-4-8-low",
+    "name": "Claude Opus 4.8 Low",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.8"
+  },
+  {
+    "id": "claude-opus-4-8-high",
+    "name": "Claude Opus 4.8 High",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.8"
+  },
+  {
+    "id": "claude-opus-4-8-xhigh",
+    "name": "Claude Opus 4.8 XHigh",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.8"
+  },
+  {
+    "id": "claude-opus-4-8-max",
+    "name": "Claude Opus 4.8 Max",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.8"
+  },
+  {
+    "id": "claude-opus-4-8-low-fast",
+    "name": "Claude Opus 4.8 Low Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.8"
+  },
+  {
+    "id": "claude-opus-4-8-medium-fast",
+    "name": "Claude Opus 4.8 Medium Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.8"
+  },
+  {
+    "id": "claude-opus-4-8-high-fast",
+    "name": "Claude Opus 4.8 High Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.8"
+  },
+  {
+    "id": "claude-opus-4-8-xhigh-fast",
+    "name": "Claude Opus 4.8 XHigh Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.8"
+  },
+  {
+    "id": "claude-opus-4-8-max-fast",
+    "name": "Claude Opus 4.8 Max Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.8"
+  },
+  {
+    "id": "claude-opus-5-low",
+    "name": "Claude Opus 5 Low",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-5"
+  },
+  {
+    "id": "claude-opus-5-high",
+    "name": "Claude Opus 5 High",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-5"
+  },
+  {
+    "id": "claude-opus-5-xhigh",
+    "name": "Claude Opus 5 XHigh",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-5"
+  },
+  {
+    "id": "claude-opus-5-max",
+    "name": "Claude Opus 5 Max",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-5"
+  },
+  {
+    "id": "claude-opus-5-low-fast",
+    "name": "Claude Opus 5 Low Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-5"
+  },
+  {
+    "id": "claude-opus-5-medium-fast",
+    "name": "Claude Opus 5 Medium Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-5"
+  },
+  {
+    "id": "claude-opus-5-high-fast",
+    "name": "Claude Opus 5 High Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-5"
+  },
+  {
+    "id": "claude-opus-5-xhigh-fast",
+    "name": "Claude Opus 5 XHigh Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-5"
+  },
+  {
+    "id": "claude-opus-5-max-fast",
+    "name": "Claude Opus 5 Max Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-5"
+  },
+  {
+    "id": "claude-5-fable-low",
+    "name": "Claude Fable 5 Low",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-5-fable"
+  },
+  {
+    "id": "claude-5-fable-medium",
+    "name": "Claude Fable 5 Medium",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-5-fable"
+  },
+  {
+    "id": "claude-5-fable-high",
+    "name": "Claude Fable 5 High",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-5-fable"
+  },
+  {
+    "id": "claude-5-fable-xhigh",
+    "name": "Claude Fable 5 XHigh",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-5-fable"
+  },
+  {
+    "id": "claude-5-fable-max",
+    "name": "Claude Fable 5 Max",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-5-fable"
+  },
+  {
+    "id": "claude-fable-5-1-low",
+    "name": "Claude Fable 5.1 Low",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-fable-5-1"
+  },
+  {
+    "id": "claude-fable-5-1-high",
+    "name": "Claude Fable 5.1 High",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-fable-5-1"
+  },
+  {
+    "id": "claude-fable-5-1-xhigh",
+    "name": "Claude Fable 5.1 XHigh",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-fable-5-1"
+  },
+  {
+    "id": "claude-fable-5-1-max",
+    "name": "Claude Fable 5.1 Max",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-fable-5-1"
+  },
+  {
+    "id": "claude-sonnet-5-low",
+    "name": "Claude Sonnet 5 Low",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-sonnet-5"
+  },
+  {
+    "id": "claude-sonnet-5-high",
+    "name": "Claude Sonnet 5 High",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-sonnet-5"
+  },
+  {
+    "id": "claude-sonnet-5-xhigh",
+    "name": "Claude Sonnet 5 XHigh",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-sonnet-5"
+  },
+  {
+    "id": "claude-sonnet-5-max",
+    "name": "Claude Sonnet 5 Max",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-sonnet-5"
+  },
+  {
+    "id": "gemini-3-5-flash-minimal",
+    "name": "Gemini 3.5 Flash Minimal",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3.5-flash"
+  },
+  {
+    "id": "gemini-3-5-flash-low",
+    "name": "Gemini 3.5 Flash Low",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3.5-flash"
+  },
+  {
+    "id": "gemini-3-5-flash-medium",
+    "name": "Gemini 3.5 Flash Medium",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3.5-flash"
+  },
+  {
+    "id": "gemini-3-5-flash-high",
+    "name": "Gemini 3.5 Flash High",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3.5-flash"
+  },
+  {
+    "id": "gemini-3-6-flash-minimal",
+    "name": "Gemini 3.6 Flash Minimal",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3.6-flash"
+  },
+  {
+    "id": "gemini-3-6-flash-low",
+    "name": "Gemini 3.6 Flash Low",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3.6-flash"
+  },
+  {
+    "id": "gemini-3-6-flash-medium",
+    "name": "Gemini 3.6 Flash Medium",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3.6-flash"
+  },
+  {
+    "id": "gemini-3-6-flash-high",
+    "name": "Gemini 3.6 Flash High",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3.6-flash"
+  },
+  {
+    "id": "gemini-3-7-flash-low",
+    "name": "Gemini 3.7 Flash Low",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3-7-flash"
+  },
+  {
+    "id": "gemini-3-7-flash-medium",
+    "name": "Gemini 3.7 Flash Medium",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3-7-flash"
+  },
+  {
+    "id": "gemini-3-7-flash-high",
+    "name": "Gemini 3.7 Flash High",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3-7-flash"
+  },
+  {
+    "id": "gemini-3-8-flash-low",
+    "name": "Gemini 3.8 Flash Low",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3-8-flash"
+  },
+  {
+    "id": "gemini-3-8-flash-high",
+    "name": "Gemini 3.8 Flash High",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3-8-flash"
+  },
+  {
+    "id": "gpt-5-6-sol-none",
+    "name": "GPT-5.6 Sol No Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-sol"
+  },
+  {
+    "id": "gpt-5-6-sol-low",
+    "name": "GPT-5.6 Sol Low Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-sol"
+  },
+  {
+    "id": "gpt-5-6-sol-high",
+    "name": "GPT-5.6 Sol High Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-sol"
+  },
+  {
+    "id": "gpt-5-6-sol-xhigh",
+    "name": "GPT-5.6 Sol XHigh Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-sol"
+  },
+  {
+    "id": "gpt-5-6-sol-max",
+    "name": "GPT-5.6 Sol Max Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-sol"
+  },
+  {
+    "id": "gpt-5-6-sol-none-priority",
+    "name": "GPT-5.6 Sol No Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-sol"
+  },
+  {
+    "id": "gpt-5-6-sol-low-priority",
+    "name": "GPT-5.6 Sol Low Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-sol"
+  },
+  {
+    "id": "gpt-5-6-sol-medium-priority",
+    "name": "GPT-5.6 Sol Medium Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-sol"
+  },
+  {
+    "id": "gpt-5-6-sol-high-priority",
+    "name": "GPT-5.6 Sol High Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-sol"
+  },
+  {
+    "id": "gpt-5-6-sol-xhigh-priority",
+    "name": "GPT-5.6 Sol XHigh Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-sol"
+  },
+  {
+    "id": "gpt-5-6-sol-max-priority",
+    "name": "GPT-5.6 Sol Max Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-sol"
+  },
+  {
+    "id": "gpt-5-6-terra-none",
+    "name": "GPT-5.6 Terra No Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-terra"
+  },
+  {
+    "id": "gpt-5-6-terra-low",
+    "name": "GPT-5.6 Terra Low Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-terra"
+  },
+  {
+    "id": "gpt-5-6-terra-medium",
+    "name": "GPT-5.6 Terra Medium Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-terra"
+  },
+  {
+    "id": "gpt-5-6-terra-high",
+    "name": "GPT-5.6 Terra High Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-terra"
+  },
+  {
+    "id": "gpt-5-6-terra-xhigh",
+    "name": "GPT-5.6 Terra XHigh Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-terra"
+  },
+  {
+    "id": "gpt-5-6-terra-max",
+    "name": "GPT-5.6 Terra Max Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-terra"
+  },
+  {
+    "id": "gpt-5-6-terra-none-priority",
+    "name": "GPT-5.6 Terra No Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-terra"
+  },
+  {
+    "id": "gpt-5-6-terra-low-priority",
+    "name": "GPT-5.6 Terra Low Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-terra"
+  },
+  {
+    "id": "gpt-5-6-terra-medium-priority",
+    "name": "GPT-5.6 Terra Medium Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-terra"
+  },
+  {
+    "id": "gpt-5-6-terra-high-priority",
+    "name": "GPT-5.6 Terra High Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-terra"
+  },
+  {
+    "id": "gpt-5-6-terra-xhigh-priority",
+    "name": "GPT-5.6 Terra XHigh Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-terra"
+  },
+  {
+    "id": "gpt-5-6-terra-max-priority",
+    "name": "GPT-5.6 Terra Max Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-terra"
+  },
+  {
+    "id": "gpt-5-6-luna-none",
+    "name": "GPT-5.6 Luna No Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-luna"
+  },
+  {
+    "id": "gpt-5-6-luna-low",
+    "name": "GPT-5.6 Luna Low Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-luna"
+  },
+  {
+    "id": "gpt-5-6-luna-high",
+    "name": "GPT-5.6 Luna High Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-luna"
+  },
+  {
+    "id": "gpt-5-6-luna-xhigh",
+    "name": "GPT-5.6 Luna XHigh Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-luna"
+  },
+  {
+    "id": "gpt-5-6-luna-max",
+    "name": "GPT-5.6 Luna Max Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-luna"
+  },
+  {
+    "id": "gpt-5-6-luna-none-priority",
+    "name": "GPT-5.6 Luna No Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-luna"
+  },
+  {
+    "id": "gpt-5-6-luna-low-priority",
+    "name": "GPT-5.6 Luna Low Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-luna"
+  },
+  {
+    "id": "gpt-5-6-luna-medium-priority",
+    "name": "GPT-5.6 Luna Medium Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-luna"
+  },
+  {
+    "id": "gpt-5-6-luna-high-priority",
+    "name": "GPT-5.6 Luna High Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-luna"
+  },
+  {
+    "id": "gpt-5-6-luna-xhigh-priority",
+    "name": "GPT-5.6 Luna XHigh Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-luna"
+  },
+  {
+    "id": "gpt-5-6-luna-max-priority",
+    "name": "GPT-5.6 Luna Max Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-5.6-luna"
+  },
+  {
+    "id": "gpt-6-astra-low",
+    "name": "GPT-6 Astra Low Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-6-astra"
+  },
+  {
+    "id": "gpt-6-astra-high",
+    "name": "GPT-6 Astra High Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-6-astra"
+  },
+  {
+    "id": "gpt-6-astra-xhigh",
+    "name": "GPT-6 Astra XHigh Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-6-astra"
+  },
+  {
+    "id": "gpt-6-astra-max",
+    "name": "GPT-6 Astra Max Thinking",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-6-astra"
+  },
+  {
+    "id": "gpt-6-astra-low-priority",
+    "name": "GPT-6 Astra Low Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-6-astra"
+  },
+  {
+    "id": "gpt-6-astra-medium-priority",
+    "name": "GPT-6 Astra Medium Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-6-astra"
+  },
+  {
+    "id": "gpt-6-astra-high-priority",
+    "name": "GPT-6 Astra High Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-6-astra"
+  },
+  {
+    "id": "gpt-6-astra-xhigh-priority",
+    "name": "GPT-6 Astra XHigh Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-6-astra"
+  },
+  {
+    "id": "gpt-6-astra-max-priority",
+    "name": "GPT-6 Astra Max Thinking Fast",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "gpt-6-astra"
+  },
+  {
+    "id": "glm-5-2-max",
+    "name": "GLM-5.2 Max",
+    "context": 200000,
+    "maxOutput": 128000,
+    "family": "glm-5.2"
+  },
+  {
+    "id": "glm-5-2-1m",
+    "name": "GLM-5.2 High 1M",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "glm-5.2"
+  },
+  {
+    "id": "glm-5-2-max-1m",
+    "name": "GLM-5.2 Max 1M",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "glm-5.2"
+  },
+  {
+    "id": "glm-5-2-none",
+    "name": "GLM-5.2 No Thinking",
+    "context": 200000,
+    "maxOutput": 128000,
+    "family": "glm-5.2"
+  },
+  {
+    "id": "glm-5-2-none-1m",
+    "name": "GLM-5.2 No Thinking 1M",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "glm-5.2"
+  },
+  {
+    "id": "grok-4-5-low",
+    "name": "Grok 4.5 Low",
+    "context": 500000,
+    "maxOutput": 100000,
+    "family": "grok-4.5"
+  },
+  {
+    "id": "grok-4-5-medium",
+    "name": "Grok 4.5 Medium",
+    "context": 500000,
+    "maxOutput": 100000,
+    "family": "grok-4.5"
+  },
+  {
+    "id": "grok-4-5-high",
+    "name": "Grok 4.5 High",
+    "context": 500000,
+    "maxOutput": 100000,
+    "family": "grok-4.5"
+  },
+  {
+    "id": "grok-4-6-low",
+    "name": "Grok 4.6 Low",
+    "context": 500000,
+    "maxOutput": 100000,
+    "family": "grok-4-6"
+  },
+  {
+    "id": "grok-4-6-medium",
+    "name": "Grok 4.6 Medium",
+    "context": 500000,
+    "maxOutput": 100000,
+    "family": "grok-4-6"
+  },
+  {
+    "id": "grok-4-6-high",
+    "name": "Grok 4.6 High",
+    "context": 500000,
+    "maxOutput": 100000,
+    "family": "grok-4-6"
+  },
+  {
+    "id": "grok-4-6-xhigh",
+    "name": "Grok 4.6 XHigh",
+    "context": 500000,
+    "maxOutput": 100000,
+    "family": "grok-4-6"
+  },
+  {
+    "id": "inkling-none",
+    "name": "Inkling None",
+    "context": 1048576,
+    "maxOutput": 131072,
+    "family": "inkling"
+  },
+  {
+    "id": "inkling-low",
+    "name": "Inkling Low",
+    "context": 1048576,
+    "maxOutput": 131072,
+    "family": "inkling"
+  },
+  {
+    "id": "inkling-medium",
+    "name": "Inkling Medium",
+    "context": 1048576,
+    "maxOutput": 131072,
+    "family": "inkling"
+  },
+  {
+    "id": "inkling-high",
+    "name": "Inkling High",
+    "context": 1048576,
+    "maxOutput": 131072,
+    "family": "inkling"
+  },
+  {
+    "id": "inkling-xhigh",
+    "name": "Inkling X-High",
+    "context": 1048576,
+    "maxOutput": 131072,
+    "family": "inkling"
+  },
+  {
+    "id": "inkling-max",
+    "name": "Inkling Max",
+    "context": 1048576,
+    "maxOutput": 131072,
+    "family": "inkling"
+  },
+  {
+    "id": "kimi-k3-low",
+    "name": "Kimi K3 Low",
+    "context": 1048576,
+    "maxOutput": 131072,
+    "family": "kimi-k3"
+  },
+  {
+    "id": "kimi-k3-max",
+    "name": "Kimi K3 Max",
+    "context": 1048576,
+    "maxOutput": 131072,
+    "family": "kimi-k3"
+  },
+  {
+    "id": "glm-5-3-flash-low",
+    "name": "GLM-5.3 Flash Low",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "glm-5-3-flash"
+  },
+  {
+    "id": "glm-5-3-flash-high",
+    "name": "GLM-5.3 Flash High",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "glm-5-3-flash"
+  },
+  {
+    "id": "glm-5-3-flash-max",
+    "name": "GLM-5.3 Flash Max",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "glm-5-3-flash"
+  },
+  {
+    "id": "deepseek-v4-flash-high",
+    "name": "DeepSeek V4 Flash High",
+    "context": 1048576,
+    "maxOutput": 384000,
+    "family": "deepseek-v4-flash"
+  },
+  {
+    "id": "deepseek-v4-flash-max",
+    "name": "DeepSeek V4 Flash Max",
+    "context": 1048576,
+    "maxOutput": 384000,
+    "family": "deepseek-v4-flash"
+  },
+  {
+    "id": "deepseek-v4-1-flash-high",
+    "name": "DeepSeek V4.1 Flash High",
+    "context": 1048576,
+    "maxOutput": 384000,
+    "family": "deepseek-v4-1-flash"
+  },
+  {
+    "id": "deepseek-v4-1-flash-max",
+    "name": "DeepSeek V4.1 Flash Max",
+    "context": 1048576,
+    "maxOutput": 384000,
+    "family": "deepseek-v4-1-flash"
+  },
+  {
+    "id": "swe-1-7",
+    "name": "SWE-1.7 Max",
+    "context": 262000,
+    "maxOutput": 128000,
+    "family": "swe-1.7"
+  },
+  {
+    "id": "swe-1-7-medium",
+    "name": "SWE-1.7 Medium",
+    "context": 262000,
+    "maxOutput": 128000,
+    "family": "swe-1.7"
+  },
+  {
+    "id": "swe-1-7-lightning-medium",
+    "name": "SWE-1.7 Lightning Medium",
+    "context": 202752,
+    "maxOutput": 96000,
+    "family": "swe-1.7-lightning"
+  },
+  {
+    "id": "swe-2-medium",
+    "name": "SWE-2 Medium",
+    "context": 262000,
+    "maxOutput": 128000,
+    "family": "swe-2"
+  },
+  {
+    "id": "swe-2-max",
+    "name": "SWE-2 Max",
+    "context": 262000,
+    "maxOutput": 128000,
+    "family": "swe-2"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-medium-sidekick-swe-2-medium",
+    "name": "Fusion (Claude Fable 5.1 Medium + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-high-sidekick-swe-2-medium",
+    "name": "Fusion (Claude Fable 5.1 High + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-high-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-5.6 Sol High Thinking + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-high-fast-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-5.6 Sol High Thinking Fast + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-high-sidekick-swe-2-medium",
+    "name": "Fusion (Claude Opus 5 High + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-high-fast-sidekick-swe-2-medium",
+    "name": "Fusion (Claude Opus 5 High Fast + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-high-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-6 Astra High Thinking + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-high-fast-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-6 Astra High Thinking Fast + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-medium-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-5.6 Sol Medium Thinking + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-medium-fast-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-5.6 Sol Medium Thinking Fast + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-medium-sidekick-swe-2-medium",
+    "name": "Fusion (Claude Opus 5 Medium + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-medium-fast-sidekick-swe-2-medium",
+    "name": "Fusion (Claude Opus 5 Medium Fast + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-medium-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-6 Astra Medium Thinking + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-medium-fast-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-6 Astra Medium Thinking Fast + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-xhigh-sidekick-swe-2-medium",
+    "name": "Fusion (Claude Opus 5 XHigh + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-xhigh-fast-sidekick-swe-2-medium",
+    "name": "Fusion (Claude Opus 5 XHigh Fast + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-xhigh-sidekick-swe-2-medium",
+    "name": "Fusion (Claude Fable 5.1 XHigh + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-xhigh-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-5.6 Sol XHigh Thinking + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-xhigh-fast-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-5.6 Sol XHigh Thinking Fast + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-xhigh-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-6 Astra XHigh Thinking + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-xhigh-fast-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-6 Astra XHigh Thinking Fast + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-low-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-5.6 Sol Low Thinking + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-low-fast-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-5.6 Sol Low Thinking Fast + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-low-sidekick-swe-2-medium",
+    "name": "Fusion (Claude Opus 5 Low + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-low-fast-sidekick-swe-2-medium",
+    "name": "Fusion (Claude Opus 5 Low Fast + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-low-sidekick-swe-2-medium",
+    "name": "Fusion (Claude Fable 5.1 Low + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-low-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-6 Astra Low Thinking + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-low-fast-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-6 Astra Low Thinking Fast + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-max-sidekick-swe-2-medium",
+    "name": "Fusion (Claude Fable 5.1 Max + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-max-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-6 Astra Max Thinking + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-max-fast-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-6 Astra Max Thinking Fast + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-max-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-5.6 Sol Max Thinking + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-max-fast-sidekick-swe-2-medium",
+    "name": "Fusion (GPT-5.6 Sol Max Thinking Fast + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-max-sidekick-swe-2-medium",
+    "name": "Fusion (Claude Opus 5 Max + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-max-fast-sidekick-swe-2-medium",
+    "name": "Fusion (Claude Opus 5 Max Fast + SWE-2 Medium)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-medium-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (Claude Fable 5.1 Medium + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-medium-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (Claude Fable 5.1 Medium + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-high-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (Claude Fable 5.1 High + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-high-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (Claude Fable 5.1 High + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-high-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (GPT-5.6 Sol High Thinking + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-high-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (GPT-5.6 Sol High Thinking Fast + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-high-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (Claude Opus 5 High + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-high-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (Claude Opus 5 High Fast + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-high-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (GPT-6 Astra High Thinking + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-high-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (GPT-6 Astra High Thinking Fast + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-medium-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (GPT-5.6 Sol Medium Thinking + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-medium-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (GPT-5.6 Sol Medium Thinking Fast + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-medium-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (Claude Opus 5 Medium + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-medium-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (Claude Opus 5 Medium Fast + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-medium-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (GPT-6 Astra Medium Thinking + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-medium-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (GPT-6 Astra Medium Thinking Fast + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-xhigh-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (Claude Opus 5 XHigh + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-xhigh-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (Claude Opus 5 XHigh Fast + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-xhigh-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (Claude Fable 5.1 XHigh + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-xhigh-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (Claude Fable 5.1 XHigh + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-xhigh-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (GPT-5.6 Sol XHigh Thinking + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-xhigh-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (GPT-5.6 Sol XHigh Thinking Fast + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-xhigh-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (GPT-6 Astra XHigh Thinking + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-xhigh-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (GPT-6 Astra XHigh Thinking Fast + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-low-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (GPT-5.6 Sol Low Thinking + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-low-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (GPT-5.6 Sol Low Thinking Fast + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-low-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (Claude Opus 5 Low + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-low-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (Claude Opus 5 Low Fast + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-low-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (Claude Fable 5.1 Low + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-low-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (Claude Fable 5.1 Low + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-low-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (GPT-6 Astra Low Thinking + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-low-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (GPT-6 Astra Low Thinking Fast + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-max-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (Claude Fable 5.1 Max + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-max-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (Claude Fable 5.1 Max + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-max-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (GPT-6 Astra Max Thinking + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-max-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (GPT-6 Astra Max Thinking Fast + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-max-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (GPT-5.6 Sol Max Thinking + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-max-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (GPT-5.6 Sol Max Thinking Fast + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-max-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion (Claude Opus 5 Max + GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-max-fast-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion (Claude Opus 5 Max Fast + GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-medium-sidekick-glm-5-2",
+    "name": "Fusion (Claude Fable 5.1 Medium + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-high-sidekick-glm-5-2",
+    "name": "Fusion (Claude Fable 5.1 High + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-high-sidekick-glm-5-2",
+    "name": "Fusion (GPT-5.6 Sol High Thinking + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-high-fast-sidekick-glm-5-2",
+    "name": "Fusion (GPT-5.6 Sol High Thinking Fast + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-high-sidekick-glm-5-2",
+    "name": "Fusion (Claude Opus 5 High + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-high-fast-sidekick-glm-5-2",
+    "name": "Fusion (Claude Opus 5 High Fast + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-high-sidekick-glm-5-2",
+    "name": "Fusion (GPT-6 Astra High Thinking + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-high-fast-sidekick-glm-5-2",
+    "name": "Fusion (GPT-6 Astra High Thinking Fast + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-medium-sidekick-glm-5-2",
+    "name": "Fusion (GPT-5.6 Sol Medium Thinking + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-medium-fast-sidekick-glm-5-2",
+    "name": "Fusion (GPT-5.6 Sol Medium Thinking Fast + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-medium-sidekick-glm-5-2",
+    "name": "Fusion (Claude Opus 5 Medium + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-medium-fast-sidekick-glm-5-2",
+    "name": "Fusion (Claude Opus 5 Medium Fast + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-medium-sidekick-glm-5-2",
+    "name": "Fusion (GPT-6 Astra Medium Thinking + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-medium-fast-sidekick-glm-5-2",
+    "name": "Fusion (GPT-6 Astra Medium Thinking Fast + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-xhigh-sidekick-glm-5-2",
+    "name": "Fusion (Claude Opus 5 XHigh + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-xhigh-fast-sidekick-glm-5-2",
+    "name": "Fusion (Claude Opus 5 XHigh Fast + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-xhigh-sidekick-glm-5-2",
+    "name": "Fusion (Claude Fable 5.1 XHigh + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-xhigh-sidekick-glm-5-2",
+    "name": "Fusion (GPT-5.6 Sol XHigh Thinking + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-xhigh-fast-sidekick-glm-5-2",
+    "name": "Fusion (GPT-5.6 Sol XHigh Thinking Fast + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-xhigh-sidekick-glm-5-2",
+    "name": "Fusion (GPT-6 Astra XHigh Thinking + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-xhigh-fast-sidekick-glm-5-2",
+    "name": "Fusion (GPT-6 Astra XHigh Thinking Fast + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-low-sidekick-glm-5-2",
+    "name": "Fusion (GPT-5.6 Sol Low Thinking + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-low-fast-sidekick-glm-5-2",
+    "name": "Fusion (GPT-5.6 Sol Low Thinking Fast + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-low-sidekick-glm-5-2",
+    "name": "Fusion (Claude Opus 5 Low + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-low-fast-sidekick-glm-5-2",
+    "name": "Fusion (Claude Opus 5 Low Fast + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-low-sidekick-glm-5-2",
+    "name": "Fusion (Claude Fable 5.1 Low + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-low-sidekick-glm-5-2",
+    "name": "Fusion (GPT-6 Astra Low Thinking + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-low-fast-sidekick-glm-5-2",
+    "name": "Fusion (GPT-6 Astra Low Thinking Fast + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-max-sidekick-glm-5-2",
+    "name": "Fusion (Claude Fable 5.1 Max + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-max-sidekick-glm-5-2",
+    "name": "Fusion (GPT-6 Astra Max Thinking + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-max-fast-sidekick-glm-5-2",
+    "name": "Fusion (GPT-6 Astra Max Thinking Fast + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-max-sidekick-glm-5-2",
+    "name": "Fusion (GPT-5.6 Sol Max Thinking + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-max-fast-sidekick-glm-5-2",
+    "name": "Fusion (GPT-5.6 Sol Max Thinking Fast + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-max-sidekick-glm-5-2",
+    "name": "Fusion (Claude Opus 5 Max + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-max-fast-sidekick-glm-5-2",
+    "name": "Fusion (Claude Opus 5 Max Fast + GLM-5.2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-medium-sidekick-gpt-5-6-sol-high",
+    "name": "Fusion (Claude Fable 5.1 Medium + GPT-5.6 Sol High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-medium-fast-sidekick-gpt-5-6-sol-high-priority",
+    "name": "Fusion (Claude Fable 5.1 Medium + GPT-5.6 Sol High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-high-sidekick-gpt-5-6-sol-high",
+    "name": "Fusion (Claude Fable 5.1 High + GPT-5.6 Sol High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-high-fast-sidekick-gpt-5-6-sol-high-priority",
+    "name": "Fusion (Claude Fable 5.1 High + GPT-5.6 Sol High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-high-sidekick-gpt-5-6-sol-high",
+    "name": "Fusion (Claude Opus 5 High + GPT-5.6 Sol High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-high-fast-sidekick-gpt-5-6-sol-high-priority",
+    "name": "Fusion (Claude Opus 5 High Fast + GPT-5.6 Sol High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-high-sidekick-gpt-5-6-sol-high",
+    "name": "Fusion (GPT-6 Astra High Thinking + GPT-5.6 Sol High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-high-fast-sidekick-gpt-5-6-sol-high-priority",
+    "name": "Fusion (GPT-6 Astra High Thinking Fast + GPT-5.6 Sol High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-medium-sidekick-gpt-5-6-sol-high",
+    "name": "Fusion (Claude Opus 5 Medium + GPT-5.6 Sol High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-medium-fast-sidekick-gpt-5-6-sol-high-priority",
+    "name": "Fusion (Claude Opus 5 Medium Fast + GPT-5.6 Sol High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-medium-sidekick-gpt-5-6-sol-high",
+    "name": "Fusion (GPT-6 Astra Medium Thinking + GPT-5.6 Sol High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-medium-fast-sidekick-gpt-5-6-sol-high-priority",
+    "name": "Fusion (GPT-6 Astra Medium Thinking Fast + GPT-5.6 Sol High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-xhigh-sidekick-gpt-5-6-sol-high",
+    "name": "Fusion (Claude Opus 5 XHigh + GPT-5.6 Sol High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-xhigh-fast-sidekick-gpt-5-6-sol-high-priority",
+    "name": "Fusion (Claude Opus 5 XHigh Fast + GPT-5.6 Sol High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-xhigh-sidekick-gpt-5-6-sol-high",
+    "name": "Fusion (Claude Fable 5.1 XHigh + GPT-5.6 Sol High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-xhigh-fast-sidekick-gpt-5-6-sol-high-priority",
+    "name": "Fusion (Claude Fable 5.1 XHigh + GPT-5.6 Sol High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-xhigh-sidekick-gpt-5-6-sol-high",
+    "name": "Fusion (GPT-6 Astra XHigh Thinking + GPT-5.6 Sol High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-xhigh-fast-sidekick-gpt-5-6-sol-high-priority",
+    "name": "Fusion (GPT-6 Astra XHigh Thinking Fast + GPT-5.6 Sol High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-low-sidekick-gpt-5-6-sol-high",
+    "name": "Fusion (Claude Opus 5 Low + GPT-5.6 Sol High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-low-fast-sidekick-gpt-5-6-sol-high-priority",
+    "name": "Fusion (Claude Opus 5 Low Fast + GPT-5.6 Sol High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-low-sidekick-gpt-5-6-sol-high",
+    "name": "Fusion (Claude Fable 5.1 Low + GPT-5.6 Sol High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-low-fast-sidekick-gpt-5-6-sol-high-priority",
+    "name": "Fusion (Claude Fable 5.1 Low + GPT-5.6 Sol High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-low-sidekick-gpt-5-6-sol-high",
+    "name": "Fusion (GPT-6 Astra Low Thinking + GPT-5.6 Sol High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-low-fast-sidekick-gpt-5-6-sol-high-priority",
+    "name": "Fusion (GPT-6 Astra Low Thinking Fast + GPT-5.6 Sol High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-max-sidekick-gpt-5-6-sol-high",
+    "name": "Fusion (Claude Fable 5.1 Max + GPT-5.6 Sol High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-max-fast-sidekick-gpt-5-6-sol-high-priority",
+    "name": "Fusion (Claude Fable 5.1 Max + GPT-5.6 Sol High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-max-sidekick-gpt-5-6-sol-high",
+    "name": "Fusion (GPT-6 Astra Max Thinking + GPT-5.6 Sol High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-max-fast-sidekick-gpt-5-6-sol-high-priority",
+    "name": "Fusion (GPT-6 Astra Max Thinking Fast + GPT-5.6 Sol High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-max-sidekick-gpt-5-6-sol-high",
+    "name": "Fusion (Claude Opus 5 Max + GPT-5.6 Sol High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-max-fast-sidekick-gpt-5-6-sol-high-priority",
+    "name": "Fusion (Claude Opus 5 Max Fast + GPT-5.6 Sol High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-medium-sidekick-swe-2-high",
+    "name": "Fusion (Claude Fable 5.1 Medium + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-high-sidekick-swe-2-high",
+    "name": "Fusion (Claude Fable 5.1 High + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-high-sidekick-swe-2-high",
+    "name": "Fusion (GPT-5.6 Sol High Thinking + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-high-fast-sidekick-swe-2-high",
+    "name": "Fusion (GPT-5.6 Sol High Thinking Fast + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-high-sidekick-swe-2-high",
+    "name": "Fusion (Claude Opus 5 High + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-high-fast-sidekick-swe-2-high",
+    "name": "Fusion (Claude Opus 5 High Fast + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-high-sidekick-swe-2-high",
+    "name": "Fusion (GPT-6 Astra High Thinking + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-high-fast-sidekick-swe-2-high",
+    "name": "Fusion (GPT-6 Astra High Thinking Fast + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-medium-sidekick-swe-2-high",
+    "name": "Fusion (GPT-5.6 Sol Medium Thinking + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-medium-fast-sidekick-swe-2-high",
+    "name": "Fusion (GPT-5.6 Sol Medium Thinking Fast + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-medium-sidekick-swe-2-high",
+    "name": "Fusion (Claude Opus 5 Medium + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-medium-fast-sidekick-swe-2-high",
+    "name": "Fusion (Claude Opus 5 Medium Fast + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-medium-sidekick-swe-2-high",
+    "name": "Fusion (GPT-6 Astra Medium Thinking + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-medium-fast-sidekick-swe-2-high",
+    "name": "Fusion (GPT-6 Astra Medium Thinking Fast + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-xhigh-sidekick-swe-2-high",
+    "name": "Fusion (Claude Opus 5 XHigh + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-xhigh-fast-sidekick-swe-2-high",
+    "name": "Fusion (Claude Opus 5 XHigh Fast + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-xhigh-sidekick-swe-2-high",
+    "name": "Fusion (Claude Fable 5.1 XHigh + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-xhigh-sidekick-swe-2-high",
+    "name": "Fusion (GPT-5.6 Sol XHigh Thinking + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-xhigh-fast-sidekick-swe-2-high",
+    "name": "Fusion (GPT-5.6 Sol XHigh Thinking Fast + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-xhigh-sidekick-swe-2-high",
+    "name": "Fusion (GPT-6 Astra XHigh Thinking + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-xhigh-fast-sidekick-swe-2-high",
+    "name": "Fusion (GPT-6 Astra XHigh Thinking Fast + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-low-sidekick-swe-2-high",
+    "name": "Fusion (GPT-5.6 Sol Low Thinking + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-low-fast-sidekick-swe-2-high",
+    "name": "Fusion (GPT-5.6 Sol Low Thinking Fast + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-low-sidekick-swe-2-high",
+    "name": "Fusion (Claude Opus 5 Low + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-low-fast-sidekick-swe-2-high",
+    "name": "Fusion (Claude Opus 5 Low Fast + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-low-sidekick-swe-2-high",
+    "name": "Fusion (Claude Fable 5.1 Low + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-low-sidekick-swe-2-high",
+    "name": "Fusion (GPT-6 Astra Low Thinking + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-low-fast-sidekick-swe-2-high",
+    "name": "Fusion (GPT-6 Astra Low Thinking Fast + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-fable-5-1-max-sidekick-swe-2-high",
+    "name": "Fusion (Claude Fable 5.1 Max + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-max-sidekick-swe-2-high",
+    "name": "Fusion (GPT-6 Astra Max Thinking + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-6-astra-max-fast-sidekick-swe-2-high",
+    "name": "Fusion (GPT-6 Astra Max Thinking Fast + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-max-sidekick-swe-2-high",
+    "name": "Fusion (GPT-5.6 Sol Max Thinking + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-gpt-5-6-sol-max-fast-sidekick-swe-2-high",
+    "name": "Fusion (GPT-5.6 Sol Max Thinking Fast + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-max-sidekick-swe-2-high",
+    "name": "Fusion (Claude Opus 5 Max + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion-claude-opus-5-max-fast-sidekick-swe-2-high",
+    "name": "Fusion (Claude Opus 5 Max Fast + SWE-2 High)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": "fusion"
+  },
+  {
+    "id": "fusion",
+    "name": "Fusion",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": null
+  },
+  {
+    "id": "fusion-sidekick-swe-2-medium",
+    "name": "Fusion Sidekick (SWE-2 Medium)",
+    "context": 262000,
+    "maxOutput": null,
+    "family": null
+  },
+  {
+    "id": "fusion-sidekick-gpt-5-6-luna-high",
+    "name": "Fusion Sidekick (GPT-5.6 Luna High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": null
+  },
+  {
+    "id": "fusion-sidekick-gpt-5-6-luna-high-priority",
+    "name": "Fusion Sidekick (GPT-5.6 Luna High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": null
+  },
+  {
+    "id": "fusion-sidekick-glm-5-2",
+    "name": "Fusion Sidekick (GLM-5.2 High)",
+    "context": 200000,
+    "maxOutput": null,
+    "family": null
+  },
+  {
+    "id": "fusion-sidekick-gpt-5-6-sol-high",
+    "name": "Fusion Sidekick (GPT-5.6 Sol High Thinking)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": null
+  },
+  {
+    "id": "fusion-sidekick-gpt-5-6-sol-high-priority",
+    "name": "Fusion Sidekick (GPT-5.6 Sol High Thinking Fast)",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": null
+  },
+  {
+    "id": "fusion-sidekick-swe-2-high",
+    "name": "Fusion Sidekick (SWE-2 High)",
+    "context": 262000,
+    "maxOutput": null,
+    "family": null
+  },
+  {
+    "id": "claude-opus-4-6",
+    "name": "Claude Opus 4.6",
+    "context": 200000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.6"
+  },
+  {
+    "id": "claude-opus-4-6-thinking",
+    "name": "Claude Opus 4.6 Thinking",
+    "context": 200000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.6"
+  },
+  {
+    "id": "claude-opus-4-6-1m",
+    "name": "Claude Opus 4.6 1M",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.6"
+  },
+  {
+    "id": "claude-opus-4-6-thinking-1m",
+    "name": "Claude Opus 4.6 Thinking 1M",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-opus-4.6"
+  },
+  {
+    "id": "gpt-5-4-none",
+    "name": "GPT-5.4 No Thinking",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.4"
+  },
+  {
+    "id": "gpt-5-4-low",
+    "name": "GPT-5.4 Low Thinking",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.4"
+  },
+  {
+    "id": "gpt-5-4-medium",
+    "name": "GPT-5.4 Medium Thinking",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.4"
+  },
+  {
+    "id": "gpt-5-4-high",
+    "name": "GPT-5.4 High Thinking",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.4"
+  },
+  {
+    "id": "gpt-5-4-xhigh",
+    "name": "GPT-5.4 XHigh Thinking",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.4"
+  },
+  {
+    "id": "gpt-5-5-none",
+    "name": "GPT-5.5 No Thinking",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.5"
+  },
+  {
+    "id": "gpt-5-5-low",
+    "name": "GPT-5.5 Low Thinking",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.5"
+  },
+  {
+    "id": "gpt-5-5-medium",
+    "name": "GPT-5.5 Medium Thinking",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.5"
+  },
+  {
+    "id": "gpt-5-5-high",
+    "name": "GPT-5.5 High Thinking",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.5"
+  },
+  {
+    "id": "gpt-5-5-xhigh",
+    "name": "GPT-5.5 XHigh Thinking",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.5"
+  },
+  {
+    "id": "gpt-5-5-none-priority",
+    "name": "GPT-5.5 No Thinking Fast",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.5"
+  },
+  {
+    "id": "gpt-5-5-low-priority",
+    "name": "GPT-5.5 Low Thinking Fast",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.5"
+  },
+  {
+    "id": "gpt-5-5-medium-priority",
+    "name": "GPT-5.5 Medium Thinking Fast",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.5"
+  },
+  {
+    "id": "gpt-5-5-high-priority",
+    "name": "GPT-5.5 High Thinking Fast",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.5"
+  },
+  {
+    "id": "gpt-5-5-xhigh-priority",
+    "name": "GPT-5.5 XHigh Thinking Fast",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.5"
+  },
+  {
+    "id": "gpt-5-4-none-priority",
+    "name": "GPT-5.4 No Thinking Fast",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.4"
+  },
+  {
+    "id": "gpt-5-4-low-priority",
+    "name": "GPT-5.4 Low Thinking Fast",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.4"
+  },
+  {
+    "id": "gpt-5-4-medium-priority",
+    "name": "GPT-5.4 Medium Thinking Fast",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.4"
+  },
+  {
+    "id": "gpt-5-4-high-priority",
+    "name": "GPT-5.4 High Thinking Fast",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.4"
+  },
+  {
+    "id": "gpt-5-4-xhigh-priority",
+    "name": "GPT-5.4 XHigh Thinking Fast",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.4"
+  },
+  {
+    "id": "gpt-5-4-mini-low",
+    "name": "GPT-5.4 Mini Low Thinking",
+    "context": 400000,
+    "maxOutput": 128000,
+    "family": "gpt-5.4-mini"
+  },
+  {
+    "id": "gpt-5-4-mini-medium",
+    "name": "GPT-5.4 Mini Medium Thinking",
+    "context": 400000,
+    "maxOutput": 128000,
+    "family": "gpt-5.4-mini"
+  },
+  {
+    "id": "gpt-5-4-mini-high",
+    "name": "GPT-5.4 Mini High Thinking",
+    "context": 400000,
+    "maxOutput": 128000,
+    "family": "gpt-5.4-mini"
+  },
+  {
+    "id": "gpt-5-4-mini-xhigh",
+    "name": "GPT-5.4 Mini XHigh Thinking",
+    "context": 400000,
+    "maxOutput": 128000,
+    "family": "gpt-5.4-mini"
+  },
+  {
+    "id": "claude-sonnet-4-6",
+    "name": "Claude Sonnet 4.6",
+    "context": 200000,
+    "maxOutput": 128000,
+    "family": "claude-sonnet-4.6"
+  },
+  {
+    "id": "claude-sonnet-4-6-thinking",
+    "name": "Claude Sonnet 4.6 Thinking",
+    "context": 200000,
+    "maxOutput": 128000,
+    "family": "claude-sonnet-4.6"
+  },
+  {
+    "id": "claude-sonnet-4-6-1m",
+    "name": "Claude Sonnet 4.6 1M",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-sonnet-4.6"
+  },
+  {
+    "id": "claude-sonnet-4-6-thinking-1m",
+    "name": "Claude Sonnet 4.6 Thinking 1M",
+    "context": 1000000,
+    "maxOutput": 128000,
+    "family": "claude-sonnet-4.6"
+  },
+  {
+    "id": "MODEL_GPT_5_2_LOW",
+    "name": "GPT-5.2 Low Thinking",
+    "context": 384000,
+    "maxOutput": 128000,
+    "family": "gpt-5.2"
+  },
+  {
+    "id": "MODEL_GPT_5_2_MEDIUM",
+    "name": "GPT-5.2 Medium Thinking",
+    "context": 384000,
+    "maxOutput": 128000,
+    "family": "gpt-5.2"
+  },
+  {
+    "id": "MODEL_CLAUDE_4_5_OPUS",
+    "name": "Claude Opus 4.5",
+    "context": 200000,
+    "maxOutput": 64000,
+    "family": "claude-opus-4.5"
+  },
+  {
+    "id": "MODEL_CLAUDE_4_5_OPUS_THINKING",
+    "name": "Claude Opus 4.5 Thinking",
+    "context": 200000,
+    "maxOutput": 64000,
+    "family": "claude-opus-4.5"
+  },
+  {
+    "id": "MODEL_PRIVATE_11",
+    "name": "Claude Haiku 4.5",
+    "context": 200000,
+    "maxOutput": 64000,
+    "family": null
+  },
+  {
+    "id": "MODEL_PRIVATE_2",
+    "name": "Claude Sonnet 4.5",
+    "context": 200000,
+    "maxOutput": 64000,
+    "family": "claude-sonnet-4.5"
+  },
+  {
+    "id": "MODEL_PRIVATE_3",
+    "name": "Claude Sonnet 4.5 Thinking",
+    "context": 200000,
+    "maxOutput": 64000,
+    "family": "claude-sonnet-4.5"
+  },
+  {
+    "id": "MODEL_CHAT_GPT_4_1_2025_04_14",
+    "name": "GPT-4.1",
+    "context": 1047576,
+    "maxOutput": 32768,
+    "family": null
+  },
+  {
+    "id": "MODEL_PRIVATE_12",
+    "name": "GPT-5.1 No Thinking",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.1"
+  },
+  {
+    "id": "MODEL_PRIVATE_13",
+    "name": "GPT-5.1 Low Thinking",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.1"
+  },
+  {
+    "id": "MODEL_PRIVATE_14",
+    "name": "GPT-5.1 Medium Thinking",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.1"
+  },
+  {
+    "id": "MODEL_PRIVATE_15",
+    "name": "GPT-5.1 High Thinking",
+    "context": 272000,
+    "maxOutput": 128000,
+    "family": "gpt-5.1"
+  },
+  {
+    "id": "MODEL_GPT_5_2_NONE",
+    "name": "GPT-5.2 No Thinking",
+    "context": 384000,
+    "maxOutput": 128000,
+    "family": "gpt-5.2"
+  },
+  {
+    "id": "MODEL_GPT_5_2_HIGH",
+    "name": "GPT-5.2 High Thinking",
+    "context": 384000,
+    "maxOutput": 128000,
+    "family": "gpt-5.2"
+  },
+  {
+    "id": "MODEL_GPT_5_2_XHIGH",
+    "name": "GPT-5.2 XHigh Thinking",
+    "context": 384000,
+    "maxOutput": 128000,
+    "family": "gpt-5.2"
+  },
+  {
+    "id": "gpt-5-3-codex-low",
+    "name": "GPT-5.3-Codex Low",
+    "context": 400000,
+    "maxOutput": 128000,
+    "family": "gpt-5.3-codex"
+  },
+  {
+    "id": "gpt-5-3-codex-medium",
+    "name": "GPT-5.3-Codex Medium",
+    "context": 400000,
+    "maxOutput": 128000,
+    "family": "gpt-5.3-codex"
+  },
+  {
+    "id": "gpt-5-3-codex-high",
+    "name": "GPT-5.3-Codex High",
+    "context": 400000,
+    "maxOutput": 128000,
+    "family": "gpt-5.3-codex"
+  },
+  {
+    "id": "gpt-5-3-codex-xhigh",
+    "name": "GPT-5.3-Codex X-High",
+    "context": 400000,
+    "maxOutput": 128000,
+    "family": "gpt-5.3-codex"
+  },
+  {
+    "id": "gpt-5-3-codex-low-priority",
+    "name": "GPT-5.3-Codex Low Fast",
+    "context": 400000,
+    "maxOutput": 128000,
+    "family": "gpt-5.3-codex"
+  },
+  {
+    "id": "gpt-5-3-codex-medium-priority",
+    "name": "GPT-5.3-Codex Medium Fast",
+    "context": 400000,
+    "maxOutput": 128000,
+    "family": "gpt-5.3-codex"
+  },
+  {
+    "id": "gpt-5-3-codex-high-priority",
+    "name": "GPT-5.3-Codex High Fast",
+    "context": 400000,
+    "maxOutput": 128000,
+    "family": "gpt-5.3-codex"
+  },
+  {
+    "id": "gpt-5-3-codex-xhigh-priority",
+    "name": "GPT-5.3-Codex XHigh Fast",
+    "context": 400000,
+    "maxOutput": 128000,
+    "family": "gpt-5.3-codex"
+  },
+  {
+    "id": "kimi-k2-6",
+    "name": "Kimi K2.6",
+    "context": 262144,
+    "maxOutput": 8192,
+    "family": "kimi-k2.6"
+  },
+  {
+    "id": "kimi-k2-7",
+    "name": "Kimi K2.7",
+    "context": 262144,
+    "maxOutput": 16000,
+    "family": "kimi-k2.7"
+  },
+  {
+    "id": "nemotron-3-ultra-none",
+    "name": "Nemotron 3 Ultra None",
+    "context": 1000000,
+    "maxOutput": 32768,
+    "family": "nemotron-3-ultra"
+  },
+  {
+    "id": "nemotron-3-ultra-medium",
+    "name": "Nemotron 3 Ultra Medium",
+    "context": 1000000,
+    "maxOutput": 32768,
+    "family": "nemotron-3-ultra"
+  },
+  {
+    "id": "nemotron-3-ultra-high",
+    "name": "Nemotron 3 Ultra High",
+    "context": 1000000,
+    "maxOutput": 32768,
+    "family": "nemotron-3-ultra"
+  },
+  {
+    "id": "swe-1-6",
+    "name": "SWE-1.6",
+    "context": 200000,
+    "maxOutput": 128000,
+    "family": "swe-1.6"
+  },
+  {
+    "id": "swe-1-6-fast",
+    "name": "SWE-1.6 Fast",
+    "context": 200000,
+    "maxOutput": 128000,
+    "family": "swe-1.6-fast"
+  },
+  {
+    "id": "swe-check",
+    "name": "SWE-check",
+    "context": 200000,
+    "maxOutput": null,
+    "family": null
+  },
+  {
+    "id": "opus-4-7-review",
+    "name": "Opus 4.7 Review",
+    "context": 1000000,
+    "maxOutput": null,
+    "family": null
+  },
+  {
+    "id": "gpt-5-5-review",
+    "name": "GPT 5.5 Review",
+    "context": 272000,
+    "maxOutput": null,
+    "family": null
+  },
+  {
+    "id": "gemini-3-1-pro-low",
+    "name": "Gemini 3.1 Pro Low Thinking",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3.1-pro"
+  },
+  {
+    "id": "gemini-3-1-pro-high",
+    "name": "Gemini 3.1 Pro High Thinking",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3.1-pro"
+  },
+  {
+    "id": "MODEL_GOOGLE_GEMINI_3_0_FLASH_MINIMAL",
+    "name": "Gemini 3 Flash Minimal",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3.0-flash"
+  },
+  {
+    "id": "MODEL_GOOGLE_GEMINI_3_0_FLASH_LOW",
+    "name": "Gemini 3 Flash Low",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3.0-flash"
+  },
+  {
+    "id": "MODEL_GOOGLE_GEMINI_3_0_FLASH_MEDIUM",
+    "name": "Gemini 3 Flash Medium",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3.0-flash"
+  },
+  {
+    "id": "MODEL_GOOGLE_GEMINI_3_0_FLASH_HIGH",
+    "name": "Gemini 3 Flash High",
+    "context": 1048576,
+    "maxOutput": 65535,
+    "family": "gemini-3.0-flash"
+  },
+  {
+    "id": "deepseek-v4-pro-high",
+    "name": "DeepSeek V4 Pro High",
+    "context": 1048576,
+    "maxOutput": 384000,
+    "family": "deepseek-v4-pro"
+  },
+  {
+    "id": "deepseek-v4-pro-max",
+    "name": "DeepSeek V4 Pro Max",
+    "context": 1048576,
+    "maxOutput": 384000,
+    "family": "deepseek-v4-pro"
+  },
+  {
+    "id": "subagent-default",
+    "name": "Subagent Default",
+    "context": null,
+    "maxOutput": null,
+    "family": null
+  },
+  {
+    "id": "memory-migration-default",
+    "name": "Memory Migration Default",
+    "context": null,
+    "maxOutput": null,
+    "family": null
+  }
+]
