@@ -155,7 +155,7 @@ credentials. Ensure `devin` works first. Or set `CCP_API_KEY` directly.
 
 **Model not found / wrong context window** — Run `node scripts/gen-settings.js`
 to regenerate `claude-settings.json` from the latest `src/models.json` snapshot.
-To refresh the snapshot, capture a live `GetCliModelConfigs` response and
+To refresh the snapshot, fetch a live `GetCliModelConfigs` response and
 decode it (see `src/models.js` for the field mapping).
 
 **Proxy port already in use** — Set `CCP_PORT=8766` (or any free port) before

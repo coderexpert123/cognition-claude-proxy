@@ -1,5 +1,5 @@
 // Model catalog: live-synced from GetCliModelConfigs (application/proto unary),
-// falling back to a bundled snapshot captured 2026-09-14.
+// falling back to a bundled snapshot from 2026-09-14.
 
 import fs from "node:fs";
 import path from "node:path";

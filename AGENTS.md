@@ -2,11 +2,10 @@
 
 ## What this is
 
-A zero-dependency Node.js proxy that exposes Cognition/Devin's internal
-Codeium Connect-RPC inference backend (`server.codeium.com`) through the
-Anthropic Messages API, so Claude Code (or any Anthropic-compatible harness)
-can use Devin's model catalog — SWE-2, GLM-5.2, DeepSeek V4.1 Flash, etc. —
-as its backend.
+A zero-dependency Node.js proxy that bridges the Anthropic Messages API to
+the Devin CLI's Connect-RPC inference backend, so Claude Code (or any
+Anthropic-compatible harness) can use Devin's model catalog — SWE-2,
+GLM-5.2, DeepSeek V4.1 Flash, etc. — as its backend.
 
 ## Intelligence layers
 
@@ -21,9 +20,9 @@ as its backend.
 
 ## Brain files
 
-- `PROTOCOL.md` — consult when debugging upstream request/response issues
+- `src/codeium.js` — consult when debugging upstream request/response issues
 - `src/models.json` — consult when model catalog changes; regenerate via
-  live `GetCliModelConfigs` capture
+  live `GetCliModelConfigs` response
 - `claude-settings.json` — generated, do not hand-edit; run
   `node scripts/gen-settings.js` after `models.json` updates
 

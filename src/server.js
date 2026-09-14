@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-// cognition-claude-proxy — Anthropic Messages API frontend for the
-// Cognition/Codeium exa.api_server_pb.ApiServerService backend.
+// cognition-claude-proxy — Anthropic Messages API frontend for the Devin CLI backend.
 // Local-only: binds 127.0.0.1, expects the dummy ANTHROPIC_AUTH_TOKEN Claude Code sends.
 
 import http from "node:http";
