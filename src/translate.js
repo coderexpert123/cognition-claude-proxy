@@ -39,6 +39,19 @@ export function sanitizeToolDesc(s) {
   return s.replace(FILE_ACCESS_RE, "").slice(0, MAX_TOOL_DESC);
 }
 
+// Anthropic requires tool_use IDs to match ^[a-zA-Z0-9_-]+$. The upstream
+// sometimes generates IDs with other characters (dots, colons, etc.).
+// Replace invalid chars with "_" so the ID passes validation on round-trip.
+// Applied in both directions: outbound (upstream→Claude Code) so Claude Code
+// never stores a bad ID, and inbound (Claude Code→upstream) so any bad IDs
+// already stored from a prior session get cleaned before the upstream sees them.
+const TOOL_ID_INVALID_RE = /[^a-zA-Z0-9_-]/g;
+function sanitizeToolId(id) {
+  if (!id) return "toolu_" + Math.random().toString(36).slice(2, 10);
+  const s = id.replace(TOOL_ID_INVALID_RE, "_");
+  return s || "toolu_" + Math.random().toString(36).slice(2, 10);
+}
+
 export function anthropicToChisel(req) {
   let system =
     typeof req.system === "string"
@@ -85,7 +98,7 @@ export function anthropicToChisel(req) {
             text = b.content
               .map((c) => (c.type === "text" ? c.text : JSON.stringify(c)))
               .join("\n");
-          messages.push({ role: 4, text, toolCallId: b.tool_use_id });
+          messages.push({ role: 4, text, toolCallId: sanitizeToolId(b.tool_use_id) });
         } else if (b.type === "text") texts.push(b.text);
         else texts.push(`[${b.type || "unknown"} block omitted by proxy]`);
       }
@@ -99,7 +112,7 @@ export function anthropicToChisel(req) {
           if (b.signature) msg.signature = b.signature;
         } else if (b.type === "tool_use")
           msg.toolCalls.push({
-            id: b.id,
+            id: sanitizeToolId(b.id),
             name: b.name,
             argsJson: JSON.stringify(b.input ?? {}),
           });
@@ -213,7 +226,7 @@ export class ChiselToAnthropicStream {
     }
     if (ev.tool && ev.tool.name) {
       yield* this.close();
-      this.toolCall = { id: ev.tool.id || "toolu_1", name: ev.tool.name };
+      this.toolCall = { id: sanitizeToolId(ev.tool.id), name: ev.tool.name };
       yield* this.open("tool_use");
     }
     if (ev.toolArgsDelta) {
@@ -284,7 +297,7 @@ export function eventsToMessage(events, model) {
     }
     if (ev.signature && cur?.type === "thinking") cur.signature = ev.signature;
     if (ev.tool?.name) {
-      cur = { type: "tool_use", id: ev.tool.id || "toolu_1", name: ev.tool.name, _args: "" };
+      cur = { type: "tool_use", id: sanitizeToolId(ev.tool.id), name: ev.tool.name, _args: "" };
       content.push(cur);
     }
     if (ev.toolArgsDelta && cur?.type === "tool_use") cur._args += ev.toolArgsDelta;
