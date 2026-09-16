@@ -13,8 +13,8 @@ REM Devin CLI's inference backend. GLM-5.2 and SWE-2 are free during the
 REM current promo.
 REM
 REM USAGE:
-REM   dclaude            -> GLM/DeepSeek/SWE-2 waterfall (default)
-REM   dclaude --free     -> free models only (replaces paid deepseek with glm-5-2;
+REM   dclaude            -> DeepSeek/GLM/SWE-2 waterfall (default)
+REM   dclaude --free     -> free models only (replaces the paid deepseek planner with glm-5-2;
 REM                       sonnet/haiku stay on free SWE-2)
 REM   dclaude -p "..."   -> args pass through to claude
 
@@ -69,39 +69,37 @@ set "CLAUDE_CODE_MAX_CONTEXT_TOKENS=262000"
 set "SETTINGS_FILE=%CCP_PROXY_DIR%\claude-settings.json"
 
 REM Model waterfall. Tiers map to Claude Code's fable/opus/sonnet/haiku aliases.
-REM   fable  = orchestrator (main thread)
-REM   opus   = deep-planner (deep-reasoning subagent)
-REM   sonnet = executor (builder subagent, max effort)
+REM   fable  = planner subagent only (architecture-level planning)
+REM   opus   = main thread (orchestrate, integrate, land) + deep-planner subagent
+REM   sonnet = builder AND verifier subagents (separate dispatches, max effort)
 REM   haiku  = background (light tasks)
-REM Verifier subagents are dispatched explicitly with --model glm-5-2
-REM (high effort, adversarial) — not via an alias.
-REM --free fallback: replace the paid deep-plan model (deepseek) with glm-5-2.
+REM --free fallback: replace the paid planner model (deepseek) with glm-5-2.
 REM Sonnet/haiku stay on SWE-2 (free) — no reason to switch free tiers.
 if "%FREE_MODE%"=="1" (
     set "ANTHROPIC_DEFAULT_FABLE_MODEL=glm-5-2"
     set "ANTHROPIC_DEFAULT_OPUS_MODEL=glm-5-2"
     set "ANTHROPIC_DEFAULT_SONNET_MODEL=swe-2-max"
     set "ANTHROPIC_DEFAULT_HAIKU_MODEL=swe-2-medium"
-    set "WATERFALL_NAME=Free fallback (glm-5-2 / glm-5-2 / swe-2-max / swe-2-med)"
+    set "WATERFALL_NAME=Free fallback (planner glm-5-2 / main glm-5-2 / exec+verify swe-2-max / bg swe-2-med)"
 ) else (
-    set "ANTHROPIC_DEFAULT_FABLE_MODEL=glm-5-2"
-    set "ANTHROPIC_DEFAULT_OPUS_MODEL=deepseek-v4-1-flash-max[1m]"
+    set "ANTHROPIC_DEFAULT_FABLE_MODEL=deepseek-v4-1-flash-max[1m]"
+    set "ANTHROPIC_DEFAULT_OPUS_MODEL=glm-5-2"
     set "ANTHROPIC_DEFAULT_SONNET_MODEL=swe-2-max"
     set "ANTHROPIC_DEFAULT_HAIKU_MODEL=swe-2-medium"
-    set "WATERFALL_NAME=GLM-5.2 / DeepSeek-V4.1-Flash-Max / SWE-2-Max / SWE-2-Med"
+    set "WATERFALL_NAME=planner DeepSeek-V4.1-Flash-Max / main GLM-5.2 / exec+verify SWE-2-Max / bg SWE-2-Med"
 )
-set "ANTHROPIC_MODEL=fable"
+set "ANTHROPIC_MODEL=opus"
 
 echo.
 echo [Devin CLI models via Connect-RPC]
 echo.
 echo Waterfall: !WATERFALL_NAME!
-echo   fable  orchestrate  - %ANTHROPIC_DEFAULT_FABLE_MODEL%
-echo   opus   deep-plan    - %ANTHROPIC_DEFAULT_OPUS_MODEL%
-echo   sonnet execute      - %ANTHROPIC_DEFAULT_SONNET_MODEL%
-echo   haiku  background   - %ANTHROPIC_DEFAULT_HAIKU_MODEL%
+echo   fable  planner          - %ANTHROPIC_DEFAULT_FABLE_MODEL%
+echo   opus   main + deep-plan - %ANTHROPIC_DEFAULT_OPUS_MODEL%
+echo   sonnet execute + verify - %ANTHROPIC_DEFAULT_SONNET_MODEL%
+echo   haiku  background       - %ANTHROPIC_DEFAULT_HAIKU_MODEL%
 echo.
-echo Default model: fable (%ANTHROPIC_DEFAULT_FABLE_MODEL%)
+echo Default model: opus (%ANTHROPIC_DEFAULT_OPUS_MODEL%)
 echo Context: 1M models use [1m] suffix, 200K use behavesAs, 262K use env=262000
 echo Proxy: http://localhost:%CCP_PORT%
 echo Settings: %SETTINGS_FILE%

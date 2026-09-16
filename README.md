@@ -88,14 +88,13 @@ Env knobs: `CCP_PORT` (default 8765), `CCP_API_KEY` (override credential),
 
 | Tier | Alias | Model | Effort | Context |
 |------|-------|-------|--------|---------|
-| Orchestrate | fable | `glm-5-2` | high | 200K |
-| Deep-plan | opus | `deepseek-v4-1-flash-max[1m]` | max | 1M |
-| Execute | sonnet | `swe-2-max` | max | 262K |
+| Plan (planner subagent) | fable | `deepseek-v4-1-flash-max[1m]` | max | 1M |
+| Orchestrate + deep-plan (main thread) | opus | `glm-5-2` | high | 200K |
+| Execute + verify (separate subagents) | sonnet | `swe-2-max` | max | 262K |
 | Background | haiku | `swe-2-medium` | medium | 262K |
-| Verify | (explicit) | `glm-5-2` | high | 200K |
 
-`--free` fallback: replaces the paid deep-plan model (deepseek) with
-`glm-5-2`; sonnet/haiku stay on free SWE-2.
+`--free` fallback: replaces the paid planner model (deepseek) with
+`glm-5-2`; opus stays on `glm-5-2` and sonnet/haiku stay on free SWE-2.
 
 ## Models & context windows
 
