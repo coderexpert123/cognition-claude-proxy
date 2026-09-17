@@ -47,6 +47,8 @@ The public repo is at `https://github.com/coderexpert123/cognition-claude-proxy`
 - haiku/background → `swe-2-medium` (free, 262K)
 - `dclaude --free` → fable/planner `glm-5-2` (replaces paid deepseek);
   opus stays on `glm-5-2`, sonnet/haiku stay on SWE-2 (already free)
+- `dclaude --swe2` → all tiers `swe-2-max` (haiku `swe-2-medium`); use when
+  non-SWE-2 models are unavailable — wins over `--free`
 
 Effort is baked into the model variant (`-max`=xhigh, `-high`=high,
 `-medium`=medium), so selecting the model ID pins effort automatically.
@@ -100,3 +102,11 @@ Context windows: 1M models use `[1m]` suffix (stripped before upstream);
   stores a bad ID, inbound so stored bad IDs from pre-fix sessions get
   cleaned on resume. Deterministic so tool_use/tool_result pairs stay
   matched. Fixed after `400 messages.N.content.N.tool_use.id` on resume.
+- **Upstream can transiently fail valid requests** (`invalid_argument`,
+  `internal`). The proxy normalizes requests (`normalizeChisel` merges
+  consecutive assistant messages and stubs orphaned tool_results), clamps
+  out-of-range sampling params, and retries upstream calls before the SSE
+  response commits (`withRetries`, `CCP_MAX_ATTEMPTS`, default 8) — for
+  streams the gate is the first content event, not the first frame, since
+  errors can arrive after a leading metadata frame. Exhausted flaky failures
+  surface as HTTP 500 so retrying clients get a second pass.

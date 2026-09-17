@@ -8,7 +8,7 @@ export const BASE = process.env.CCP_UPSTREAM || "https://server.codeium.com";
 const RPC_PATH = "/exa.api_server_pb.ApiServerService/GetChatMessage";
 
 const CLIENT_NAME = "devin-cli";
-const CLIENT_VERSION = "3000.10.21";
+const CLIENT_VERSION = "3000.10.31";
 const APP_NAME = "chisel";
 
 // ---------- request building ----------
@@ -18,6 +18,7 @@ function buildMetadata(apiKey) {
     fStr(1, CLIENT_NAME),
     fStr(2, CLIENT_VERSION),
     fStr(3, apiKey),
+    fStr(4, "en"), // locale
     fStr(5, process.platform === "win32" ? "windows" : process.platform),
     fStr(7, CLIENT_VERSION),
     fStr(12, APP_NAME),
@@ -53,13 +54,19 @@ function buildChatMessage(m) {
 }
 
 function buildCompletionConfig(req) {
+  // upstream rejects out-of-range sampling params — clamp into the legal
+  // envelope rather than pass client values through
+  const temp = req.temperature > 0 && req.temperature <= 1 ? req.temperature : 1.0;
+  const topP = req.top_p > 0 && req.top_p <= 1 ? req.top_p : 0.95;
+  const topK = Number.isInteger(req.top_k) && req.top_k >= 1 ? req.top_k : 40;
+  const maxTok = req.max_tokens >= 1 ? Math.floor(req.max_tokens) : 128000;
   return Buffer.concat([
     fVarint(1, 1),
-    fVarint(2, req.max_tokens || 128000),
+    fVarint(2, maxTok),
     fVarint(3, 400),
-    fF64(5, req.temperature ?? 1.0),
-    fVarint(7, req.top_k ?? 40),
-    fF64(8, req.top_p ?? 0.95),
+    fF64(5, temp),
+    fVarint(7, topK),
+    fF64(8, topP),
   ]);
 }
 
@@ -82,7 +89,7 @@ export function buildRequestBody({ apiKey, system, messages, tools, model, compl
     fMsg(8, completion),
     ...(tools || []).map(buildTool),
     fMsg(15, Buffer.concat([
-      fMsg(1, fMsg(12, fStr(6, crypto.randomUUID()))),
+      fStr(1, crypto.randomUUID()),
       fVarint(2, 1),
       fVarint(3, 4),
     ])),
@@ -198,8 +205,9 @@ export async function* sendChat(apiKey, requestFields, { signal } = {}) {
             const err = new Error(
               `upstream stream error ${t.error.code || "unknown"}: ${String(t.error.message || raw).slice(0, 300)}`
             );
+            err.code = t.error.code || "unknown";
             err.status =
-              { unauthenticated: 401, permission_denied: 403, resource_exhausted: 429, invalid_argument: 400 }[
+              { unauthenticated: 401, permission_denied: 403, resource_exhausted: 429, failed_precondition: 400, invalid_argument: 400 }[
                 t.error.code
               ] || 502;
             throw err;

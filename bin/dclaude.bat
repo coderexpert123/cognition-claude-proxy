@@ -16,6 +16,8 @@ REM USAGE:
 REM   dclaude            -> DeepSeek/GLM/SWE-2 waterfall (default)
 REM   dclaude --free     -> free models only (replaces the paid deepseek planner with glm-5-2;
 REM                       sonnet/haiku stay on free SWE-2)
+REM   dclaude --swe2     -> all-SWE-2 fallback (every tier swe-2-max/medium);
+REM                         use while non-SWE-2 models are quota-limited
 REM   dclaude -p "..."   -> args pass through to claude
 
 SETLOCAL ENABLEDELAYEDEXPANSION
@@ -32,11 +34,14 @@ if not defined CCP_PROXY_DIR set "CCP_PROXY_DIR=%~dp0.."
 REM Parse --free flag out of args (claude doesn't know it)
 REM Re-quote each arg with "%~1" to preserve spaces in prompts
 set "FREE_MODE=0"
+set "SWE2_MODE=0"
 set "PASSED_ARGS="
 :argloop
 if "%~1"=="" goto argdone
 if /i "%~1"=="--free" (
     set "FREE_MODE=1"
+) else if /i "%~1"=="--swe2" (
+    set "SWE2_MODE=1"
 ) else (
     set "PASSED_ARGS=!PASSED_ARGS! "%~1""
 )
@@ -75,7 +80,15 @@ REM   sonnet = builder AND verifier subagents (separate dispatches, max effort)
 REM   haiku  = background (light tasks)
 REM --free fallback: replace the paid planner model (deepseek) with glm-5-2.
 REM Sonnet/haiku stay on SWE-2 (free) — no reason to switch free tiers.
-if "%FREE_MODE%"=="1" (
+REM --swe2: all-SWE-2 override for when non-SWE-2 models are unavailable
+REM (wins over --free). All tiers 262K via CLAUDE_CODE_MAX_CONTEXT_TOKENS.
+if "%SWE2_MODE%"=="1" (
+    set "ANTHROPIC_DEFAULT_FABLE_MODEL=swe-2-max"
+    set "ANTHROPIC_DEFAULT_OPUS_MODEL=swe-2-max"
+    set "ANTHROPIC_DEFAULT_SONNET_MODEL=swe-2-max"
+    set "ANTHROPIC_DEFAULT_HAIKU_MODEL=swe-2-medium"
+    set "WATERFALL_NAME=All SWE-2 (planner/main/exec swe-2-max / bg swe-2-med)"
+) else if "%FREE_MODE%"=="1" (
     set "ANTHROPIC_DEFAULT_FABLE_MODEL=glm-5-2"
     set "ANTHROPIC_DEFAULT_OPUS_MODEL=glm-5-2"
     set "ANTHROPIC_DEFAULT_SONNET_MODEL=swe-2-max"

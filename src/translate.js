@@ -129,7 +129,7 @@ export function anthropicToChisel(req) {
 
   return {
     system: sanitizeSystem(system),
-    messages,
+    messages: normalizeChisel(messages),
     tools,
     model: req.model,
     completion: {
@@ -139,6 +139,41 @@ export function anthropicToChisel(req) {
       top_p: req.top_p,
     },
   };
+}
+
+// The upstream backend rejects (invalid_argument) an assistant message
+// carrying tool_calls when the NEXT message is also assistant (calls must be
+// followed by their tool_results), and a tool_result that arrives with no
+// pending call. Normalize both:
+//  - merge consecutive assistant msgs into one (text/thinking concat, calls
+//    concat, latest signature wins)
+//  - inject a stub call msg before an orphaned tool_result so the ordering
+//    check passes and the result content is preserved
+function normalizeChisel(messages) {
+  const merged = [];
+  for (const m of messages) {
+    const prev = merged[merged.length - 1];
+    if (m.role === 2 && prev?.role === 2) {
+      if (m.text) prev.text = (prev.text || "") + m.text;
+      if (m.thinking) prev.thinking = (prev.thinking || "") + m.thinking;
+      if (m.signature) prev.signature = m.signature;
+      prev.toolCalls.push(...(m.toolCalls || []));
+      continue;
+    }
+    merged.push(m);
+  }
+  const pending = new Set();
+  const out = [];
+  for (const m of merged) {
+    if (m.role === 2) for (const t of m.toolCalls || []) pending.add(t.id);
+    if (m.role === 4) {
+      if (!pending.size)
+        out.push({ role: 2, toolCalls: [{ id: m.toolCallId, name: "tool", argsJson: "{}" }] });
+      pending.delete(m.toolCallId);
+    }
+    out.push(m);
+  }
+  return out;
 }
 
 // ---- streaming: chisel events -> Anthropic SSE ----

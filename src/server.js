@@ -35,6 +35,47 @@ async function readBody(req) {
   return Buffer.concat(chunks);
 }
 
+// Upstream intermittently returns invalid_argument/internal errors for valid
+// requests (a per-attempt coin flip, not a per-request verdict). Retries are
+// cheap — the failure arrives fast, before any content — so bounded retries
+// mask the outage. Deterministic errors are excluded from retry.
+const MAX_ATTEMPTS = parseInt(process.env.CCP_MAX_ATTEMPTS || "8", 10);
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+function retryableUpstream(e) {
+  if (e.name === "AbortError") return false;
+  if (["unauthenticated", "permission_denied", "failed_precondition"].includes(e.code)) return false;
+  if (/prompt is too long/i.test(e.message)) return false;
+  return true;
+}
+
+// Run `attempt()` up to MAX_ATTEMPTS times while errors stay retryable.
+// Returns [result, attempts]; rethrows the last error when exhausted.
+async function withRetries(attempt) {
+  let tries = 0;
+  while (true) {
+    tries++;
+    try {
+      return [await attempt(), tries];
+    } catch (e) {
+      if (!retryableUpstream(e) || tries >= MAX_ATTEMPTS) {
+        e.attempts = tries;
+        throw e;
+      }
+      if (process.env.CCP_DEBUG)
+        console.log(`[retry ${tries}/${MAX_ATTEMPTS}] ${e.message.slice(0, 140)}`);
+      await sleep(150 * tries + Math.floor(Math.random() * 100));
+    }
+  }
+}
+
+// Status to surface when retries are exhausted. Flaky-class failures get 500
+// so clients that retry 5xx (but never 4xx) get a second pass; deterministic
+// upstream verdicts pass through untouched.
+function finalStatus(e) {
+  return retryableUpstream(e) ? 500 : e.status || 502;
+}
+
 async function handleMessages(req, res) {
   const raw = await readBody(req);
   let body;
@@ -54,6 +95,9 @@ async function handleMessages(req, res) {
     console.log(`[req] dump -> ${dump}`);
   }
   const chiselReq = anthropicToChisel(body);
+  if (!chiselReq.messages.length)
+    return anthropicError(res, 400, "invalid_request_error",
+      "no user/assistant content after translation (upstream would 400)");
   const requestFields = {
     apiKey: apiKey(),
     system: chiselReq.system,
@@ -69,13 +113,29 @@ async function handleMessages(req, res) {
   };
 
   if (body.stream) {
-    // Buffer first event before committing to 200 status.
+    // Buffer before committing to 200 status.
     let sseLog = null;
     const ac = new AbortController();
     res.on("close", () => ac.abort()); // client gone -> stop consuming upstream
     try {
-      const gen = sendChat(apiKey(), requestFields, { signal: ac.signal });
-      const first = await gen.next();
+      // Pull until the first content-bearing event before committing the SSE
+      // response: upstream can emit a metadata frame first and deliver its
+      // error right AFTER it, so gating on frame 1 alone misses the failure.
+      // Content = text/thinking/tool/stop/trailer.
+      let gen, buffered, tries;
+      [[gen, buffered], tries] = await withRetries(async () => {
+        const g = sendChat(apiKey(), requestFields, { signal: ac.signal });
+        const buf = [];
+        for (let i = 0; i < 10; i++) {
+          const r = await g.next();
+          if (r.done) break;
+          buf.push(r.value);
+          const v = r.value;
+          if (v.text || v.thinking || v.tool || v.toolArgsDelta || v.signature ||
+              v.stop !== undefined || v.trailer) break;
+        }
+        return [g, buf];
+      });
 
       res.writeHead(200, {
         "content-type": "text/event-stream",
@@ -89,17 +149,19 @@ async function handleMessages(req, res) {
         ? fs.createWriteStream(path.join(os.tmpdir(), `ccp-sse-${Date.now()}.log`))
         : null;
       const write = (s) => { sseLog?.write(s); res.write(s); };
-      if (!first.done) {
+      for (const ev of buffered) {
         nEvents++;
-        if (process.env.CCP_DEBUG) console.log("[ev0]", JSON.stringify(first.value).slice(0, 200));
-        for (const s of tx.feed(first.value)) write(s);
+        if (nEvents === 1 && process.env.CCP_DEBUG)
+          console.log("[ev0]", JSON.stringify(ev).slice(0, 200));
+        for (const s of tx.feed(ev)) write(s);
       }
       for await (const ev of gen) {
         nEvents++;
         for (const s of tx.feed(ev)) write(s);
       }
       for (const s of tx.finish()) write(s);
-      if (process.env.CCP_DEBUG) console.log(`[resp] events=${nEvents} stop=${tx.stopReason}`);
+      if (process.env.CCP_DEBUG)
+        console.log(`[resp] events=${nEvents} stop=${tx.stopReason} tries=${tries}`);
       sseLog?.end();
       res.end();
     } catch (e) {
@@ -107,7 +169,8 @@ async function handleMessages(req, res) {
       sseLog?.end();
       if (res.destroyed) return; // client already gone — nothing to write to
       if (!res.headersSent) {
-        anthropicError(res, e.status || 502, "api_error", e.message);
+        const note = e.attempts > 1 ? ` (${e.attempts} upstream attempts)` : "";
+        anthropicError(res, finalStatus(e), "api_error", e.message + note);
       } else {
         // Stream already committed — deliver the failure as an SSE error
         // event (what the real API does) instead of a silent truncation.
@@ -121,18 +184,26 @@ async function handleMessages(req, res) {
     const ac = new AbortController();
     res.on("close", () => ac.abort());
     try {
-      const events = [];
-      for await (const ev of sendChat(apiKey(), requestFields, { signal: ac.signal }))
-        events.push(ev);
+      // Nothing is committed until the whole upstream stream is collected,
+      // so the full request is retried, not just the first event.
+      const [events, tries] = await withRetries(async () => {
+        const evs = [];
+        for await (const ev of sendChat(apiKey(), requestFields, { signal: ac.signal }))
+          evs.push(ev);
+        return evs;
+      });
       const msg = eventsToMessage(events, model);
       if (process.env.CCP_DEBUG)
-        console.log(`[resp] events=${events.length} blocks=${msg.content.length} stop=${msg.stop_reason}`);
+        console.log(`[resp] events=${events.length} blocks=${msg.content.length} stop=${msg.stop_reason} tries=${tries}`);
       if (res.destroyed) return;
       res.writeHead(200, { "content-type": "application/json" });
       res.end(JSON.stringify(msg));
     } catch (e) {
       if (e.name !== "AbortError") console.error("[upstream error]", e.message);
-      if (!res.destroyed) anthropicError(res, e.status || 502, "api_error", e.message);
+      if (!res.destroyed) {
+        const note = e.attempts > 1 ? ` (${e.attempts} upstream attempts)` : "";
+        anthropicError(res, finalStatus(e), "api_error", e.message + note);
+      }
     }
   }
 }
