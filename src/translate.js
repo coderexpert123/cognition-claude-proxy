@@ -167,7 +167,7 @@ function normalizeChisel(messages) {
   for (const m of merged) {
     if (m.role === 2) for (const t of m.toolCalls || []) pending.add(t.id);
     if (m.role === 4) {
-      if (!pending.size)
+      if (!pending.has(m.toolCallId))
         out.push({ role: 2, toolCalls: [{ id: m.toolCallId, name: "tool", argsJson: "{}" }] });
       pending.delete(m.toolCallId);
     }

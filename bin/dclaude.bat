@@ -112,7 +112,11 @@ echo Context: 1M models use [1m] suffix, 200K use behavesAs, 262K use env=262000
 echo Proxy: http://localhost:%CCP_PORT%
 echo Settings: %SETTINGS_FILE%
 echo.
-echo Tavily web search: ENABLED
+if defined TAVILY_API_KEY (
+    echo Tavily web search: ENABLED
+) else (
+    echo Tavily web search: DISABLED -- TAVILY_API_KEY not set
+)
 echo Built-in WebSearch is disabled -- it's Anthropic's server-side tool and
 echo doesn't work through a local proxy.
 echo.
