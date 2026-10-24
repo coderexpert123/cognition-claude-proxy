@@ -16,7 +16,10 @@ Two branches exist — this is load-bearing, not incidental:
   internal process references and private working files.
 
 The public repo is at `https://github.com/coderexpert123/cognition-claude-proxy`
-(tagged `v0.1.0`, MIT licensed).
+(tagged `v0.1.0`, MIT licensed). On macOS, pushes authenticate as
+`hrishikesh-agentpug` — a write collaborator since 2026-10-24 (invites are
+accepted via `gh api -X PATCH /user/repository_invitations/<id>`); the
+`coderexpert123` creds live on the Windows machine.
 
 ## Intelligence layers
 
@@ -107,6 +110,10 @@ Context windows: 1M models use `[1m]` suffix (stripped before upstream);
   became `-p create a file...` and claude only saw "create". Fixed by
   re-quoting each arg with `"%~1"`. The batch arg loop is fragile — if
   argument quoting breaks again, check `bin/dclaude.bat` first.
+- **Literal parens inside a bat `if (...) else (...)` block close the block
+  early** — `echo DISABLED (key not set)` parses the `)` as the block end.
+  Use `--` style (`DISABLED -- key not set`) or escape with `^)` inside
+  parenthesized blocks.
 - **Multiple instances are safe** — `dclaude` health-checks the proxy on
   :8765 before starting. If already up, it reuses it. Second-instance
   `EADDRINUSE` is caught by `server.on("error")` and exits cleanly.
@@ -118,7 +125,11 @@ Context windows: 1M models use `[1m]` suffix (stripped before upstream);
   matched. Fixed after `400 messages.N.content.N.tool_use.id` on resume.
 - **Upstream can transiently fail valid requests** (`invalid_argument`,
   `internal`). The proxy normalizes requests (`normalizeChisel` merges
-  consecutive assistant messages and stubs orphaned tool_results), clamps
+  consecutive assistant messages and stubs orphaned tool_results — the
+  orphan check is per-id (`!pending.has(toolCallId)`), not pending-set
+  emptiness: a result can be orphaned while other calls are still pending
+  (its call was dropped when an assistant msg held only unsupported
+  blocks)), clamps
   out-of-range sampling params, and retries upstream calls before the SSE
   response commits (`withRetries`, `CCP_MAX_ATTEMPTS`, default 8) — for
   streams the gate is the first content event, not the first frame, since
