@@ -6,7 +6,8 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "test:unit": "node --test test/config.test.js"
   },
   "bin": {
     "ccp": "src/server.js"

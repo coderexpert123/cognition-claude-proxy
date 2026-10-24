@@ -26,8 +26,9 @@ The public repo is at `https://github.com/coderexpert123/cognition-claude-proxy`
 2. **Source** — `src/`: `server.js` (HTTP), `translate.js` (Anthropic↔Connect-RPC),
    `codeium.js` (upstream client), `proto.js` (protobuf codec), `config.js`
    (credential loader), `models.js` + `models.json` (catalog sync).
-3. **Harness integration** — `bin/dclaude.bat` (wrapper), `claude-settings.json`
-   (generated modelPicker rows), `scripts/gen-settings.js` (generator).
+3. **Harness integration** — `bin/dclaude.bat` (Windows) and `bin/dclaude`
+   (macOS/Linux) wrappers, `claude-settings.json` (generated modelPicker
+   rows), `scripts/gen-settings.js` (generator).
 
 ## Brain files
 
@@ -41,14 +42,12 @@ The public repo is at `https://github.com/coderexpert123/cognition-claude-proxy`
 
 - fable/planner → `deepseek-v4-1-flash-max[1m]` (paid, 1M, max thinking;
   architecture-level planning subagent only)
-- opus/main thread + deep-plan → `glm-5-2` (free, 200K)
+- opus/main thread + deep-plan → `glm-5-2` (paid, 200K)
 - sonnet/execute + verify → `swe-2-max` (free, 262K, max effort; builder and
   verifier run as separate dispatches)
-- haiku/background → `swe-2-medium` (free, 262K)
-- `dclaude --free` → fable/planner `glm-5-2` (replaces paid deepseek);
-  opus stays on `glm-5-2`, sonnet/haiku stay on SWE-2 (already free)
-- `dclaude --swe2` → all tiers `swe-2-max` (haiku `swe-2-medium`); use when
-  non-SWE-2 models are unavailable — wins over `--free`
+- haiku/background → `swe-2-max` (free, 262K)
+- `dclaude --free` = `dclaude --swe2` → all tiers `swe-2-max`, planner drops
+  to 262K. Identical since GLM left the free plan (2026-09-18).
 
 Effort is baked into the model variant (`-max`=xhigh, `-high`=high,
 `-medium`=medium), so selecting the model ID pins effort automatically.
@@ -85,7 +84,22 @@ Context windows: 1M models use `[1m]` suffix (stripped before upstream);
 - **Cloud MCP connectors are disabled** when `ANTHROPIC_AUTH_TOKEN` is set
   (local proxy auth overrides claude.ai login). Local/stdio MCPs work fine.
 - **The proxy uses local Devin CLI credentials** to authenticate. Free models
-  (GLM-5.2, SWE-2) are the safest targets.
+  (SWE-2) are the safest targets.
+- **Credentials live in the XDG DATA dir on macOS/Linux, not `~/.config`** —
+  Devin CLI follows XDG on every Unix (macOS included): `$XDG_DATA_HOME/devin/
+  credentials.toml`, else `~/.local/share/devin/credentials.toml`. Windows
+  stays `%APPDATA%\devin\credentials.toml`. `config.json` is the file under
+  `~/.config/devin` — don't conflate the two dirs. `test/config.test.js` pins
+  both platforms.
+- **Restart the proxy after credential/config changes** — `dclaude`
+  health-checks `:8765` and reuses an already-running proxy, so a stale
+  process keeps the old code/path. Kill it (`pkill -f src/server.js` on
+  macOS/Linux) before re-running.
+- **macOS bash 3.2 + `set -u` rejects empty array expansion** — plain
+  `dclaude` (no pass-through args) fails with
+  `PASSED_ARGS[@]: unbound variable`; bash 4.4+ made this legal. Guard with
+  `${PASSED_ARGS[@]+"${PASSED_ARGS[@]}"}`. `bin/dclaude` keeps parity with
+  `bin/dclaude.bat`.
 - **`dclaude` is in the user PATH** (`D:\My Repos\cognition-claude-proxy\bin`)
   — persistent across reboots. New terminals pick it up; already-open
   terminals need a restart.

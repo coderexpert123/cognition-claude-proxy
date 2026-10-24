@@ -1,0 +1,144 @@
+#!/usr/bin/env bash
+# Devin CLI model backend wrapper using cognition-claude-proxy
+# macOS/Linux counterpart to dclaude.bat.
+#
+# DCLAUDE ISOLATION PRINCIPLE:
+# All DCLAUDE-specific customizations must go in DCLAUDE-specific locations:
+#   - Memory: ~/.claude/projects/DCLAUDE/memory/
+#   - Settings/hooks: Only add to global settings.json if they check DCLAUDE_SESSION
+# DO NOT add DCLAUDE-specific items to main/global config
+#
+# RISK NOTE: this proxy uses your local Devin CLI credentials
+# (windsurf_api_key from ~/.local/share/devin/credentials.toml) to call the
+# Devin CLI's inference backend. SWE-2 is free during the current promo.
+#
+# USAGE:
+#   dclaude            -> DeepSeek/GLM/SWE-2 waterfall (default)
+#   dclaude --free     -> free models only; identical to --swe2 since GLM
+#                         left the free plan (2026-09-18)
+#   dclaude --swe2     -> all-SWE-2 (every tier swe-2-max)
+#   dclaude -p "..."   -> args pass through to claude
+
+set -euo pipefail
+
+CCP_PORT="${CCP_PORT:-8765}"
+
+# Resolve symlinks so `ln -s <repo>/bin/dclaude ~/.local/bin/dclaude` still
+# finds the repo. macOS readlink has no -f, hence the loop.
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  case "$SOURCE" in
+    /*) ;;
+    *) SOURCE="$DIR/$SOURCE" ;;
+  esac
+done
+CCP_PROXY_DIR="${CCP_PROXY_DIR:-$(cd -P "$(dirname "$SOURCE")/.." && pwd)}"
+
+command -v node >/dev/null 2>&1 || { echo "ERROR: node is not installed." >&2; exit 1; }
+command -v curl >/dev/null 2>&1 || { echo "ERROR: curl is not installed." >&2; exit 1; }
+if [ ! -f "$CCP_PROXY_DIR/src/server.js" ]; then
+  echo "ERROR: CCP_PROXY_DIR ($CCP_PROXY_DIR) is not the cognition-claude-proxy repo." >&2
+  echo "Set CCP_PROXY_DIR to the repo root, or symlink this script from <repo>/bin/." >&2
+  exit 1
+fi
+
+FREE_MODE=0
+SWE2_MODE=0
+PASSED_ARGS=()
+for arg in "$@"; do
+  case "$arg" in
+    --free) FREE_MODE=1 ;;
+    --swe2) SWE2_MODE=1 ;;
+    *) PASSED_ARGS+=("$arg") ;;
+  esac
+done
+
+# GLM left the free plan (2026-09-18) -- --free now aliases --swe2.
+if [ "$FREE_MODE" = "1" ]; then SWE2_MODE=1; fi
+
+if [ -z "${TAVILY_API_KEY:-}" ]; then
+  echo "WARNING: TAVILY_API_KEY is not set. Tavily web search will be unavailable." >&2
+fi
+
+if ! curl -sf -o /dev/null "http://localhost:${CCP_PORT}/health"; then
+  echo "Starting cognition-claude-proxy on port ${CCP_PORT}..."
+  PROXY_LOG="${TMPDIR:-/tmp}/ccp-proxy.log"
+  ( cd "$CCP_PROXY_DIR" && nohup node src/server.js >"$PROXY_LOG" 2>&1 & )
+  i=0
+  while [ "$i" -lt 20 ]; do
+    if curl -sf -o /dev/null "http://localhost:${CCP_PORT}/health"; then break; fi
+    i=$((i + 1))
+    sleep 0.25
+  done
+  if ! curl -sf -o /dev/null "http://localhost:${CCP_PORT}/health"; then
+    echo "ERROR: proxy failed to start. Last log lines (${PROXY_LOG}):" >&2
+    tail -n 20 "$PROXY_LOG" >&2 || true
+    exit 1
+  fi
+fi
+
+export ANTHROPIC_BASE_URL="http://localhost:${CCP_PORT}"
+export ANTHROPIC_AUTH_TOKEN=test
+export API_TIMEOUT_MS=3000000
+export DCLAUDE_SESSION=1
+
+# Harness-native model catalog + per-model context windows via --settings.
+# claude-settings.json is generated from src/models.json (run scripts/gen-settings.js
+# after `devin models list` changes). Context handling:
+#   1M models  -> "[1m]" suffix on row model (stripped before upstream; beats env)
+#   200K models-> behavesAs "claude-opus-4-6" (catalog 200K; beats env)
+#   262K models-> env CLAUDE_CODE_MAX_CONTEXT_TOKENS=262000 (below)
+#   <262K      -> behavesAs 200K (safe under-assume)
+export CLAUDE_CODE_MAX_CONTEXT_TOKENS=262000
+SETTINGS_FILE="${CCP_PROXY_DIR}/claude-settings.json"
+
+# Model waterfall. Tiers map to Claude Code's fable/opus/sonnet/haiku aliases.
+#   fable  = planner subagent only (architecture-level planning)
+#   opus   = main thread (orchestrate, integrate, land) + deep-planner subagent
+#   sonnet = builder AND verifier subagents (separate dispatches; SWE-2 always at -max)
+#   haiku  = background (light tasks)
+# --free/--swe2 (identical since GLM left the free plan 2026-09-18):
+# all-SWE-2, the only models still on the free tier. All tiers 262K via
+# CLAUDE_CODE_MAX_CONTEXT_TOKENS -- planner loses the 1M window (no 1M
+# SWE-2 variant exists).
+if [ "$SWE2_MODE" = "1" ]; then
+  export ANTHROPIC_DEFAULT_FABLE_MODEL=swe-2-max
+  export ANTHROPIC_DEFAULT_OPUS_MODEL=swe-2-max
+  export ANTHROPIC_DEFAULT_SONNET_MODEL=swe-2-max
+  export ANTHROPIC_DEFAULT_HAIKU_MODEL=swe-2-max
+  WATERFALL_NAME="All SWE-2-Max (every tier swe-2-max)"
+else
+  export ANTHROPIC_DEFAULT_FABLE_MODEL='deepseek-v4-1-flash-max[1m]'
+  export ANTHROPIC_DEFAULT_OPUS_MODEL=glm-5-2
+  export ANTHROPIC_DEFAULT_SONNET_MODEL=swe-2-max
+  export ANTHROPIC_DEFAULT_HAIKU_MODEL=swe-2-max
+  WATERFALL_NAME="planner DeepSeek-V4.1-Flash-Max / main GLM-5.2 / exec+verify+bg SWE-2-Max"
+fi
+export ANTHROPIC_MODEL=opus
+
+echo
+echo "[Devin CLI models via Connect-RPC]"
+echo
+echo "Waterfall: ${WATERFALL_NAME}"
+echo "  fable  planner          - ${ANTHROPIC_DEFAULT_FABLE_MODEL}"
+echo "  opus   main + deep-plan - ${ANTHROPIC_DEFAULT_OPUS_MODEL}"
+echo "  sonnet execute + verify - ${ANTHROPIC_DEFAULT_SONNET_MODEL}"
+echo "  haiku  background       - ${ANTHROPIC_DEFAULT_HAIKU_MODEL}"
+echo
+echo "Default model: opus (${ANTHROPIC_DEFAULT_OPUS_MODEL})"
+echo "Context: 1M models use [1m] suffix, 200K use behavesAs, 262K use env=262000"
+echo "Proxy: http://localhost:${CCP_PORT}"
+echo "Settings: ${SETTINGS_FILE}"
+echo
+echo "Tavily web search: ENABLED"
+echo "Built-in WebSearch is disabled -- it's Anthropic's server-side tool and"
+echo "doesn't work through a local proxy."
+echo
+
+# macOS ships bash 3.2, where `"${PASSED_ARGS[@]}"` on an empty array trips
+# `set -u` ("PASSED_ARGS[@]: unbound variable"). The +alternate form expands to
+# nothing when the array is empty and is safe on every bash.
+exec claude --settings "$SETTINGS_FILE" --disallowedTools WebSearch \
+  ${PASSED_ARGS[@]+"${PASSED_ARGS[@]}"}

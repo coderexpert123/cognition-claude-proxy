@@ -35,7 +35,8 @@ claude  (ANTHROPIC_BASE_URL=http://localhost:8765)
 </details>
 
 The proxy authenticates using your local Devin CLI credentials
-(`%APPDATA%\devin\credentials.toml` on Windows, `~/.config/devin/credentials.toml`
+(`%APPDATA%\devin\credentials.toml` on Windows;
+`$XDG_DATA_HOME/devin/credentials.toml` or `~/.local/share/devin/credentials.toml`
 on Linux/macOS). No API keys to manage — if `devin` works, `dclaude` works.
 
 ## Prerequisites
@@ -61,6 +62,13 @@ set ANTHROPIC_AUTH_TOKEN=test
 claude -p "hello"
 ```
 
+On macOS/Linux, use `bin/dclaude` instead of the `.bat`:
+
+```bash
+chmod +x bin/dclaude
+bin/dclaude -p "hello"
+```
+
 ## Setup
 
 ```powershell
@@ -75,6 +83,8 @@ bin\dclaude.bat               # launches claude pointed at the proxy
 bin\dclaude.bat --model swe-2 # pick any model from `devin models list`
 bin\dclaude.bat --free        # free-models-only fallback (replaces paid models with free ones)
 ```
+
+On macOS/Linux, `bin/dclaude` takes the same flags.
 
 Env knobs: `CCP_PORT` (default 8765), `CCP_API_KEY` (override credential),
 `CCP_CREDENTIALS` (override credentials.toml path), `CCP_UPSTREAM`
@@ -91,10 +101,11 @@ Env knobs: `CCP_PORT` (default 8765), `CCP_API_KEY` (override credential),
 | Plan (planner subagent) | fable | `deepseek-v4-1-flash-max[1m]` | max | 1M |
 | Orchestrate + deep-plan (main thread) | opus | `glm-5-2` | high | 200K |
 | Execute + verify (separate subagents) | sonnet | `swe-2-max` | max | 262K |
-| Background | haiku | `swe-2-medium` | medium | 262K |
+| Background | haiku | `swe-2-max` | max | 262K |
 
-`--free` fallback: replaces the paid planner model (deepseek) with
-`glm-5-2`; opus stays on `glm-5-2` and sonnet/haiku stay on free SWE-2.
+`--free` / `--swe2` (identical since GLM left the free plan 2026-09-18):
+all-SWE-2 — every tier `swe-2-max`; planner drops to 262K (no 1M SWE-2
+variant exists).
 
 ## Models & context windows
 
@@ -149,8 +160,12 @@ shows nothing. Ensure the proxy started successfully (check
 `http://localhost:8765/health` returns `{"ok":true}`). If it did, run with
 `CCP_DEBUG=1` to dump request/response bodies to `%TEMP%\ccp-*.json`.
 
-**`windsurf_api_key not found`** — The proxy couldn't find your Devin CLI
-credentials. Ensure `devin` works first. Or set `CCP_API_KEY` directly.
+**`windsurf_api_key not found` / `credentials file not readable`** — The
+proxy couldn't find your Devin CLI credentials. Ensure `devin auth login`
+has been run; the file is `%APPDATA%\devin\credentials.toml` on Windows and
+`$XDG_DATA_HOME/devin/credentials.toml` (else
+`~/.local/share/devin/credentials.toml`) on macOS/Linux. Or set
+`CCP_API_KEY` directly.
 
 **Model not found / wrong context window** — Run `node scripts/gen-settings.js`
 to regenerate `claude-settings.json` from the latest `src/models.json` snapshot.
@@ -170,4 +185,5 @@ decode errors. PRs welcome.
 
 ```powershell
 node scripts/test.js    # checks /health and /v1/models
+npm run test:unit       # credential-path unit tests (no proxy needed)
 ```

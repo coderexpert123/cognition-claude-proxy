@@ -42,6 +42,15 @@ async function readBody(req) {
 const MAX_ATTEMPTS = parseInt(process.env.CCP_MAX_ATTEMPTS || "8", 10);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+// Edge read-timeout defense (proxy fronts such as Cloudflare 524): the edge
+// kills a response that hasn't STARTED (~120s), but the window closes once
+// bytes flow. So keep the first-event buffer uncommitted for
+// HEADER_GRACE_MS — fast upstream failures still map to real HTTP statuses —
+// then send headers + SSE heartbeat comments and let slow upstreams (and the
+// retry loop) take as long as they need.
+const HEADER_GRACE_MS = parseInt(process.env.CCP_HEADER_GRACE_MS || "60000", 10);
+const SSE_PING_MS = parseInt(process.env.CCP_SSE_PING_MS || "15000", 10);
+
 function retryableUpstream(e) {
   if (e.name === "AbortError") return false;
   if (["unauthenticated", "permission_denied", "failed_precondition"].includes(e.code)) return false;
@@ -116,32 +125,55 @@ async function handleMessages(req, res) {
     // Buffer before committing to 200 status.
     let sseLog = null;
     const ac = new AbortController();
-    res.on("close", () => ac.abort()); // client gone -> stop consuming upstream
+    // If the buffer outlives HEADER_GRACE_MS, startPing commits headers and
+    // emits ": ping" comments so the edge read window can't fire mid-wait;
+    // pings also cover idle gaps during generation until res.end().
+    let graceTimer = null, pingTimer = null;
+    const stopTimers = () => { clearTimeout(graceTimer); clearInterval(pingTimer); };
+    res.on("close", () => { ac.abort(); stopTimers(); }); // client gone -> stop consuming upstream
     try {
+      const sendSseHead = () => {
+        if (res.headersSent) return;
+        res.writeHead(200, {
+          "content-type": "text/event-stream",
+          "cache-control": "no-cache",
+          connection: "keep-alive",
+        });
+      };
+      const startPing = () => {
+        sendSseHead();
+        if (pingTimer) return;
+        pingTimer = setInterval(() => {
+          if (!res.destroyed) res.write(": ping\n\n");
+        }, SSE_PING_MS);
+        pingTimer.unref?.();
+      };
       // Pull until the first content-bearing event before committing the SSE
       // response: upstream can emit a metadata frame first and deliver its
       // error right AFTER it, so gating on frame 1 alone misses the failure.
-      // Content = text/thinking/tool/stop/trailer.
+      // Content = text/thinking/tool/stop/trailer. A fresh sendChat() per
+      // attempt re-rolls routing entropy (fresh ids).
       let gen, buffered, tries;
-      [[gen, buffered], tries] = await withRetries(async () => {
-        const g = sendChat(apiKey(), requestFields, { signal: ac.signal });
-        const buf = [];
-        for (let i = 0; i < 10; i++) {
-          const r = await g.next();
-          if (r.done) break;
-          buf.push(r.value);
-          const v = r.value;
-          if (v.text || v.thinking || v.tool || v.toolArgsDelta || v.signature ||
-              v.stop !== undefined || v.trailer) break;
-        }
-        return [g, buf];
-      });
-
-      res.writeHead(200, {
-        "content-type": "text/event-stream",
-        "cache-control": "no-cache",
-        connection: "keep-alive",
-      });
+      graceTimer = setTimeout(startPing, HEADER_GRACE_MS);
+      graceTimer.unref?.();
+      try {
+        [[gen, buffered], tries] = await withRetries(async () => {
+          const g = sendChat(apiKey(), requestFields, { signal: ac.signal });
+          const buf = [];
+          for (let i = 0; i < 10; i++) {
+            const r = await g.next();
+            if (r.done) break;
+            buf.push(r.value);
+            const v = r.value;
+            if (v.text || v.thinking || v.tool || v.toolArgsDelta || v.signature ||
+                v.stop !== undefined || v.trailer) break;
+          }
+          return [g, buf];
+        });
+      } finally {
+        clearTimeout(graceTimer);
+      }
+      startPing(); // commits headers now if the grace timer didn't already
 
       const tx = new ChiselToAnthropicStream(model);
       let nEvents = 0;
@@ -163,19 +195,21 @@ async function handleMessages(req, res) {
       if (process.env.CCP_DEBUG)
         console.log(`[resp] events=${nEvents} stop=${tx.stopReason} tries=${tries}`);
       sseLog?.end();
+      stopTimers();
       res.end();
     } catch (e) {
+      stopTimers();
       if (e.name !== "AbortError") console.error("[upstream error]", e.message);
       sseLog?.end();
       if (res.destroyed) return; // client already gone — nothing to write to
+      const note = e.attempts > 1 ? ` (${e.attempts} upstream attempts)` : "";
       if (!res.headersSent) {
-        const note = e.attempts > 1 ? ` (${e.attempts} upstream attempts)` : "";
         anthropicError(res, finalStatus(e), "api_error", e.message + note);
       } else {
         // Stream already committed — deliver the failure as an SSE error
         // event (what the real API does) instead of a silent truncation.
         res.write(
-          `event: error\ndata: ${JSON.stringify({ type: "error", error: { type: "api_error", message: e.message } })}\n\n`
+          `event: error\ndata: ${JSON.stringify({ type: "error", error: { type: "api_error", message: e.message + note } })}\n\n`
         );
         res.end();
       }

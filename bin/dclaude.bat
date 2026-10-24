@@ -9,15 +9,13 @@ REM DO NOT add DCLAUDE-specific items to main/global config
 REM
 REM RISK NOTE: this proxy uses your local Devin CLI credentials
 REM (windsurf_api_key from %%APPDATA%%\devin\credentials.toml) to call the
-REM Devin CLI's inference backend. GLM-5.2 and SWE-2 are free during the
-REM current promo.
+REM Devin CLI's inference backend. SWE-2 is free during the current promo.
 REM
 REM USAGE:
 REM   dclaude            -> DeepSeek/GLM/SWE-2 waterfall (default)
-REM   dclaude --free     -> free models only (replaces the paid deepseek planner with glm-5-2;
-REM                       sonnet/haiku stay on free SWE-2)
-REM   dclaude --swe2     -> all-SWE-2 fallback (every tier swe-2-max/medium);
-REM                         use while non-SWE-2 models are quota-limited
+REM   dclaude --free     -> free models only; identical to --swe2 since GLM
+REM                         left the free plan (2026-09-18)
+REM   dclaude --swe2     -> all-SWE-2 (every tier swe-2-max)
 REM   dclaude -p "..."   -> args pass through to claude
 
 SETLOCAL ENABLEDELAYEDEXPANSION
@@ -49,6 +47,9 @@ shift
 goto argloop
 :argdone
 
+REM GLM left the free plan (2026-09-18) — --free now aliases --swe2.
+if "%FREE_MODE%"=="1" set "SWE2_MODE=1"
+
 if not defined TAVILY_API_KEY echo WARNING: TAVILY_API_KEY is not set. Tavily web search will be unavailable.
 
 curl -sf -o nul "http://localhost:%CCP_PORT%/health" >nul 2>nul
@@ -76,30 +77,24 @@ set "SETTINGS_FILE=%CCP_PROXY_DIR%\claude-settings.json"
 REM Model waterfall. Tiers map to Claude Code's fable/opus/sonnet/haiku aliases.
 REM   fable  = planner subagent only (architecture-level planning)
 REM   opus   = main thread (orchestrate, integrate, land) + deep-planner subagent
-REM   sonnet = builder AND verifier subagents (separate dispatches, max effort)
+REM   sonnet = builder AND verifier subagents (separate dispatches; SWE-2 always at -max)
 REM   haiku  = background (light tasks)
-REM --free fallback: replace the paid planner model (deepseek) with glm-5-2.
-REM Sonnet/haiku stay on SWE-2 (free) — no reason to switch free tiers.
-REM --swe2: all-SWE-2 override for when non-SWE-2 models are unavailable
-REM (wins over --free). All tiers 262K via CLAUDE_CODE_MAX_CONTEXT_TOKENS.
+REM --free/--swe2 (identical since GLM left the free plan 2026-09-18):
+REM all-SWE-2, the only models still on the free tier. All tiers 262K via
+REM CLAUDE_CODE_MAX_CONTEXT_TOKENS — planner loses the 1M window (no 1M
+REM SWE-2 variant exists).
 if "%SWE2_MODE%"=="1" (
     set "ANTHROPIC_DEFAULT_FABLE_MODEL=swe-2-max"
     set "ANTHROPIC_DEFAULT_OPUS_MODEL=swe-2-max"
     set "ANTHROPIC_DEFAULT_SONNET_MODEL=swe-2-max"
-    set "ANTHROPIC_DEFAULT_HAIKU_MODEL=swe-2-medium"
-    set "WATERFALL_NAME=All SWE-2 (planner/main/exec swe-2-max / bg swe-2-med)"
-) else if "%FREE_MODE%"=="1" (
-    set "ANTHROPIC_DEFAULT_FABLE_MODEL=glm-5-2"
-    set "ANTHROPIC_DEFAULT_OPUS_MODEL=glm-5-2"
-    set "ANTHROPIC_DEFAULT_SONNET_MODEL=swe-2-max"
-    set "ANTHROPIC_DEFAULT_HAIKU_MODEL=swe-2-medium"
-    set "WATERFALL_NAME=Free fallback (planner glm-5-2 / main glm-5-2 / exec+verify swe-2-max / bg swe-2-med)"
+    set "ANTHROPIC_DEFAULT_HAIKU_MODEL=swe-2-max"
+    set "WATERFALL_NAME=All SWE-2-Max (every tier swe-2-max)"
 ) else (
     set "ANTHROPIC_DEFAULT_FABLE_MODEL=deepseek-v4-1-flash-max[1m]"
     set "ANTHROPIC_DEFAULT_OPUS_MODEL=glm-5-2"
     set "ANTHROPIC_DEFAULT_SONNET_MODEL=swe-2-max"
-    set "ANTHROPIC_DEFAULT_HAIKU_MODEL=swe-2-medium"
-    set "WATERFALL_NAME=planner DeepSeek-V4.1-Flash-Max / main GLM-5.2 / exec+verify SWE-2-Max / bg SWE-2-Med"
+    set "ANTHROPIC_DEFAULT_HAIKU_MODEL=swe-2-max"
+    set "WATERFALL_NAME=planner DeepSeek-V4.1-Flash-Max / main GLM-5.2 / exec+verify+bg SWE-2-Max"
 )
 set "ANTHROPIC_MODEL=opus"
 
