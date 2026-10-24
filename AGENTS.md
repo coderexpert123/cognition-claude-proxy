@@ -9,11 +9,10 @@ GLM-5.2, DeepSeek V4.1 Flash, etc. — as its backend.
 
 ## Repo state
 
-Two branches exist — this is load-bearing, not incidental:
-
-- **`master`** — private working branch. Never push to GitHub.
-- **`main`** — public branch. Keep its history and content free of
-  internal process references and private working files.
+One branch: **`main`**, published. There is no `master` (verified
+2026-10-24: `git branch -a` lists only `main` / `origin/main`), so every
+commit goes to `main` — keep its history and content free of internal
+process references and private working files.
 
 The public repo is at `https://github.com/coderexpert123/cognition-claude-proxy`
 (tagged `v0.1.0`, MIT licensed). On macOS, pushes authenticate as
@@ -40,6 +39,24 @@ accepted via `gh api -X PATCH /user/repository_invitations/<id>`); the
   live `GetCliModelConfigs` response
 - `claude-settings.json` — generated, do not hand-edit; run
   `node scripts/gen-settings.js` after `models.json` updates
+
+## Verifying a wrapper change
+
+Do not test `bin/dclaude` by launching a real session — it burns a model
+call and hangs an interactive TUI. Put a stub `claude` first on PATH and
+inspect what the wrapper forwards:
+
+```bash
+mkdir -p /tmp/dclaude-test
+printf '#!/bin/bash\nprintf "  [%%s]\\n" "$@"\n' > /tmp/dclaude-test/claude
+chmod +x /tmp/dclaude-test/claude
+PATH="/tmp/dclaude-test:$PATH" bin/dclaude                       # empty-arg case
+PATH="/tmp/dclaude-test:$PATH" bin/dclaude -p "two  spaces" --free
+```
+
+The first case is the one that regresses: bash 3.2 + `set -u` aborts on an
+empty `"${PASSED_ARGS[@]}"`. Both runs must exit 0, and the quoted prompt
+must arrive as one argv element.
 
 ## Model waterfall (pinned 2026-09-16)
 
@@ -102,7 +119,10 @@ Context windows: 1M models use `[1m]` suffix (stripped before upstream);
   `dclaude` (no pass-through args) fails with
   `PASSED_ARGS[@]: unbound variable`; bash 4.4+ made this legal. Guard with
   `${PASSED_ARGS[@]+"${PASSED_ARGS[@]}"}`. `bin/dclaude` keeps parity with
-  `bin/dclaude.bat`.
+  `bin/dclaude.bat`. On macOS `~/.local/bin/dclaude` is a **symlink** to
+  `bin/dclaude` — edit only the repo file. A stale standalone copy from
+  2026-09-17 shadowed the repo script and reintroduced the crash; it is
+  backed up as `~/.local/bin/dclaude.bak-2026-10-24`.
 - **`dclaude` is in the user PATH** (`D:\My Repos\cognition-claude-proxy\bin`)
   — persistent across reboots. New terminals pick it up; already-open
   terminals need a restart.

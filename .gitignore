@@ -5,3 +5,4 @@ node_modules/
 ccp-*.json
 ccp-*.log
 repomix-output.xml
+.claude-needs-brain

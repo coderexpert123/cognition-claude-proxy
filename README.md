@@ -67,6 +67,10 @@ On macOS/Linux, use `bin/dclaude` instead of the `.bat`:
 ```bash
 chmod +x bin/dclaude
 bin/dclaude -p "hello"
+
+# optional: put it on PATH (symlink, not a copy — a stale copy shadows
+# repo fixes and is the usual cause of wrapper bugs)
+ln -s "$PWD/bin/dclaude" ~/.local/bin/dclaude
 ```
 
 ## Setup
@@ -81,7 +85,7 @@ Then use the wrapper (put `bin\` on PATH or call directly):
 ```powershell
 bin\dclaude.bat               # launches claude pointed at the proxy
 bin\dclaude.bat --model swe-2 # pick any model from `devin models list`
-bin\dclaude.bat --free        # free-models-only fallback (replaces paid models with free ones)
+bin\dclaude.bat --free        # all-SWE-2; identical to --swe2 since GLM left the free plan
 ```
 
 On macOS/Linux, `bin/dclaude` takes the same flags.
